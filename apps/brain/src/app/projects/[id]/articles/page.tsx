@@ -1,6 +1,6 @@
 'use client';
 
-import { DashboardLayout } from "@sre-monorepo/components"
+import { DashboardLayout } from "@/components/DashboardLayout"
 import { Box, Container, Grid, Group, ThemeIcon, Text, useMantineColorScheme, useMantineTheme, Badge, Card, Divider, Button, TextInput, ActionIcon, FileInput, LoadingOverlay, Modal } from "@mantine/core";
 import { IconArticleFilled, IconEye, IconSquareRoundedX, IconSearch, IconPlus, IconUpload, IconHistory, IconFile, IconCalendar, IconNotes, IconArrowLeft, IconChevronLeft } from "@tabler/icons-react";
 import { notifications } from '@mantine/notifications';
