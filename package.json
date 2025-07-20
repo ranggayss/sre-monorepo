@@ -12,7 +12,13 @@
     "db:push": "npm -w @sre-monorepo/lib run prisma:db:push",
     "db:pull": "npm -w @sre-monorepo/lib run prisma:db:pull",
     "db:studio": "npm -w @sre-monorepo/lib run prisma:studio",
-    "db:reset": "npm -w @sre-monorepo/lib run prisma:reset"
+    "db:reset": "npm -w @sre-monorepo/lib run prisma:reset",
+
+    "build:main": "turbo run build --filter=main",
+    "build:brain": "turbo run build --filter=brain",
+    "start": "turbo run start",
+    "start:main": "cd apps/main && npm start",
+    "start:brain": "cd apps/brain && npm start"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
