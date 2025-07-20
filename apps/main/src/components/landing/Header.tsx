@@ -44,7 +44,7 @@ export function Header() {
             <Box>
                 <Image
                 src='/images/LogoSRE_Fix.png'
-                alt="ResearchCraft Dashboard"
+                alt="My-SRE Dashboard"
                 height={40}
                 radius="xs"
                 // className={classes.heroImage}

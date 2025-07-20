@@ -1,4 +1,4 @@
-// packages/components/src/DashboardHeader.tsx
+// components/DashboardHeader.tsx
 'use client';
 
 import {
@@ -23,12 +23,19 @@ import {
   IconUser,
   IconLogout,
 } from '@tabler/icons-react';
-import { useAuth, useUserData } from '@sre-monorepo/lib'; // Adjust import path
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 interface DashboardHeaderProps {
   sidebarOpened: boolean;
   onToggleSidebar: () => void;
   mounted: boolean;
+}
+
+interface User {
+  id: string,
+  email: string,
+  name: string,
 }
 
 export function DashboardHeader({ 
@@ -38,16 +45,55 @@ export function DashboardHeader({
 }: DashboardHeaderProps) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = mounted ? colorScheme === 'dark' : false;
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   
-  // Gunakan auth context
-  const { signOut } = useAuth();
-  const { user, loading } = useUserData();
+  const fetchUser = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/auth/signin', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+
+      const data = await res.json();
+
+      if (!data){
+        setUser(null);
+        throw new Error('There is no user authenticated');
+      }else{
+        console.log(data);
+        setUser(data.user);
+      }
+    } catch (error: any) {
+        console.error(error.message); 
+        setUser(null);
+    } finally {
+        setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   const handleLogout = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error('Logout failed:', error);
+    const res = await fetch('/api/auth/signout',{
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (res.ok){
+      console.log('Berhasil logout');
+      router.push('signin');
+    }else{
+      console.error('Tidak berhasil logout');
     }
   };
 
@@ -150,7 +196,7 @@ export function DashboardHeader({
                   gradient={{ from: 'blue', to: 'cyan', deg: 45 }}
                   style={{ cursor: 'pointer' }}
                 >
-                  {loading ? '...' : (user?.name?.charAt(0).toUpperCase() || <IconUser size={16} />)}
+                  <IconUser size={16} />
                 </Avatar>
               </ActionIcon>
             </Menu.Target>
@@ -158,26 +204,19 @@ export function DashboardHeader({
             <Menu.Dropdown>
               <Menu.Label>
                 <Group gap="xs">
-                  <Avatar size="xs" color="blue">
-                    {user?.name?.charAt(0).toUpperCase() || 'U'}
-                  </Avatar>
+                  <Avatar size="xs" color="blue">U</Avatar>
                   <Text size="sm">Signed in as</Text>
                 </Group>
               </Menu.Label>
               <Menu.Item>
-                <Text size="sm" fw={600}>
-                  {loading ? 'Loading...' : (user?.name || 'Unknown User')}
-                </Text>
-                <Text size="xs" c="dimmed">
-                  {loading ? 'Loading...' : (user?.email || 'No email')}
-                </Text>
+                <Text size="sm" fw={600}>{(user?.name)?.split('@')[0]}</Text>
+                <Text size="xs" c="dimmed">{user?.email}</Text>
               </Menu.Item>
               <Menu.Divider />
               <Menu.Item 
                 leftSection={<IconLogout size={16} />}
                 color="red" 
                 onClick={handleLogout}
-                disabled={loading}
               >
                 Sign out
               </Menu.Item>

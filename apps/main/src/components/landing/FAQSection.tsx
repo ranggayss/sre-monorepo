@@ -57,7 +57,7 @@ export function FAQSection() {
             Frequently Asked Questions
           </Title>
           <Text size="lg" c="dimmed" ta="center" maw={600}>
-            Find answers to common questions about ResearchCraft and how it can help streamline your research workflow.
+            Find answers to common questions about My-SRE and how it can help streamline your research workflow.
           </Text>
         </Stack>
 

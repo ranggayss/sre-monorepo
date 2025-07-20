@@ -1,7 +1,8 @@
 'use client';
 
 import { Modal, Table, Text, Group, Badge, Paper, ThemeIcon, Box, Stack } from '@mantine/core';
-import { ExtendedNode } from '../types';
+// import { ExtendedNode } from '../types';
+import { ExtendedNode } from '@/types';
 import { IconArticle, IconTarget, IconMath, IconHistory, IconArrowForward, IconFileAlert } from '@tabler/icons-react';
 import WebViewer from '@/components/WebViewer';
 import { useState } from 'react';
