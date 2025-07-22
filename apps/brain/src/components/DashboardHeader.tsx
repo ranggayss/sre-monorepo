@@ -13,6 +13,7 @@ import {
   Burger,
   ThemeIcon,
   useMantineColorScheme,
+  Image
 } from "@mantine/core"
 import { IconNetwork, IconSettings, IconSun, IconMoon, IconUser, IconLogout } from "@tabler/icons-react"
 import { useState, useEffect } from "react"
@@ -116,16 +117,24 @@ export function DashboardHeader({ sidebarOpened, onToggleSidebar, mounted }: Das
         <Group gap="md">
           <Burger opened={sidebarOpened} onClick={onToggleSidebar} size="sm" />
           <Group gap="xs">
-            <ThemeIcon variant="gradient" gradient={{ from: "blue", to: "cyan", deg: 45 }} size="lg" radius="md">
+            {/* <ThemeIcon variant="gradient" gradient={{ from: "blue", to: "cyan", deg: 45 }} size="lg" radius="md">
               <IconNetwork size={20} />
-            </ThemeIcon>
+            </ThemeIcon> */}
             <Box>
-              <Text fw={800} size="xl" variant="gradient" gradient={{ from: "blue", to: "cyan", deg: 45 }}>
+              {/* <Text fw={800} size="xl" variant="gradient" gradient={{ from: "blue", to: "cyan", deg: 45 }}>
                 mySRE
               </Text>
               <Text size="xs" c="dimmed">
                 Knowledge Visualization Platform
-              </Text>
+              </Text> */}
+              <Image
+                src='/images/LogoSRE_Fix.png'
+                alt="My-SRE Logo"
+                width={160}
+                height={50}
+                fit="contain"
+                style={{ alignSelf: "flex-start" }}
+              />
             </Box>
           </Group>
         </Group>
