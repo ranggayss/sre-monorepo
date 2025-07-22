@@ -8,4 +8,6 @@ type Events = {
   articleDeleted: void;
 };
 
-export const eventBus = mitt<Events>();
+ const eventBus = mitt<Events>();
+
+export default eventBus;
