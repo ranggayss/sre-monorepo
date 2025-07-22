@@ -21,10 +21,10 @@ export async function createServerSupabaseClient() {
                                 ...options,
                                 domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN || '.lvh.me',
                                 path: '/',
-                                httpOnly: true, // PENTING: Kembalikan ke true untuk keamanan
+                                httpOnly: true, 
                                 secure: process.env.NODE_ENV === 'production',
                                 sameSite: 'lax',
-                                maxAge: options?.maxAge || 60 * 60 * 24 * 7 // 7 days default
+                                maxAge: options?.maxAge || 60 * 60 * 24 * 7 // 7 days 
                             };
 
                             // Log untuk debugging
