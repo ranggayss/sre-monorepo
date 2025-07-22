@@ -15,7 +15,7 @@ export function HeroSection() {
           <Badge size="lg" variant="light" color="blue" radius="xl">
             {/* 🚀 Launching Soon - Join the Beta */}
             {/* Welcome */}
-            💡 Early Access - Try Now!
+            💡 Acces Now - Try Now!
           </Badge>
 
           <Title order={1} size="3.5rem" fw={900} ta="center" className={classes.title} maw={800}>

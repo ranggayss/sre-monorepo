@@ -32,7 +32,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // Jika pengguna tidak terautentikasi dan mencoba mengakses rute yang dilindungi
-    if (!session && pathname === '/') {
+    if (!session ) {
       // Redirect ke main app signin
       const redirectUrl = new URL('/signin', process.env.NEXT_PUBLIC_MAIN_APP_URL || 'http://main.lvh.me:3000');
       redirectUrl.searchParams.set('redirectedFrom', request.url);

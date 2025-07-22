@@ -23,14 +23,14 @@ export async function middleware(request: NextRequest) {
 
     // Jika pengguna sudah terautentikasi dan mencoba mengakses signin/signup
     if (session && (pathname === '/signin' || pathname === '/signup')) {
-      const redirectUrl = new URL('/', process.env.NEXT_PUBLIC_BRAIN_APP_URL || 'http://brain.lvh.me:3001');
+      const redirectUrl = new URL('/', process.env.NEXT_PUBLIC_PROFILE_APP_URL || 'http://profile.lvh.me:3001');
       console.log('User already authenticated, redirecting to brain app root:', redirectUrl.toString());
       return NextResponse.redirect(redirectUrl);
     }
 
     // Jika pengguna terautentikasi dan mengakses root, redirect ke brain app
     if (session && pathname === '/') {
-      const redirectUrl = new URL('/', process.env.NEXT_PUBLIC_BRAIN_APP_URL || 'http://brain.lvh.me:3001');
+      const redirectUrl = new URL('/', process.env.NEXT_PUBLIC_PROFILE_APP_URL || 'http://profile.lvh.me:3001');
       console.log('Authenticated user accessing root, redirecting to brain app:', redirectUrl.toString());
       return NextResponse.redirect(redirectUrl);
     }

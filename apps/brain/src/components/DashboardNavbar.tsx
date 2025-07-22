@@ -36,7 +36,7 @@ const dashboard = [
   {
     icon: <IconChartDots2Filled/>,
     name: 'Knowledge Graph',
-    href: '/dashboard',
+    href: '/',
   },
   // {
   //   icon: <IconArticleFilled/>,

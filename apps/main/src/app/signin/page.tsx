@@ -54,11 +54,12 @@ export default function LoginPage() {
         await new Promise(resolve => setTimeout(resolve, 200));
         
         // Client-side redirect ke brain app
-        const brainUrl = `${process.env.NEXT_PUBLIC_BRAIN_APP_URL || 'http://brain.lvh.me:3001'}/`;
-        console.log('Redirecting to:', brainUrl);
+        // const brainUrl = `${process.env.NEXT_PUBLIC_BRAIN_APP_URL || 'http://brain.lvh.me:3001'}/`;
+        const profileUrl = `${process.env.NEXT_PUBLIC_PROFILE_APP_URL || 'http://profile.lvh.me:3002/dashboard'}/`;
+        console.log('Redirecting to:', profileUrl);
         
         // Force full page navigation untuk cross-domain
-        window.location.href = brainUrl;
+        window.location.href = profileUrl;
         
         // Alternative untuk same domain:
         // router.push(brainUrl);
