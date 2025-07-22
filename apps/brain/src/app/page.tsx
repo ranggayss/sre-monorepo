@@ -26,6 +26,8 @@ import {
   useMantineColorScheme,
   useMantineTheme,
   Tooltip,
+  Overlay,
+  Loader,
 } from '@mantine/core';
 import {
   IconPlus,
@@ -88,6 +90,8 @@ export default function ProjectDashboard() {
   const isDark = colorScheme === 'dark';
 
   const [mounted, setMounted] = useState(false);
+  const [loadingStates, setLoadingStates] = useState<{[key: string]: boolean;}>({});
+
   const router = useRouter();
   
   const brainstormingSessions: BrainstormingSession[] = projects.map(project => ({
@@ -131,6 +135,13 @@ export default function ProjectDashboard() {
     coverColor: '#4c6ef5',
   });
 
+  const setButtonLoading = (key: string, loading: boolean) => {
+    setLoadingStates(prev => ({
+      ...prev,
+      [key]: loading
+    }));
+  };
+
   const fetchProjects = async () => {
     try {
       const res = await fetch('/api/brainstorming-sessions', {
@@ -170,6 +181,12 @@ export default function ProjectDashboard() {
 
     fetchProjects();
 
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      setLoadingStates({});
+    }
   }, []);
 
   useEffect(() => {
@@ -390,7 +407,12 @@ export default function ProjectDashboard() {
     eventBus.emit('articleDeleted');
   }
 
-const ProjectCard = ({ project }: { project: BrainstormingProject }) => (
+const ProjectCard = ({ project, isLoading }: { project: BrainstormingProject; isLoading?: boolean }) => {
+
+  const isCardLoading = loadingStates[`project-${project.id}`];
+
+  return (
+
   <Card
     shadow="sm"
     padding="lg"
@@ -410,6 +432,17 @@ const ProjectCard = ({ project }: { project: BrainstormingProject }) => (
       e.currentTarget.style.boxShadow = '';
     }}
   >
+    {/* Loading Overlay untuk Card */}
+      {isCardLoading && (
+        <Overlay color="#fff" opacity={0.8} style={{ borderRadius: 'var(--mantine-radius-lg)' }}>
+          <Center h="100%">
+            <Stack align="center" gap="xs">
+              <Loader size="md" />
+              {/* <Text size="sm" c="dimmed">Membuka project...</Text> */}
+            </Stack>
+          </Center>
+        </Overlay>
+      )}
     <Stack gap="md" h="100%">
       {/* Color bar - selalu terlihat */}
       <Box
@@ -547,7 +580,8 @@ const ProjectCard = ({ project }: { project: BrainstormingProject }) => (
       </Group>
     </Stack>
   </Card>
-);
+  )}
+;
 
   const CreateProjectCard = () => (
     <Card
@@ -665,7 +699,9 @@ const ProjectCard = ({ project }: { project: BrainstormingProject }) => (
                 <Stack gap="sm" h="100%">
                   {/* Project content - clickable area */}
                   <div 
-                    onClick={() => router.push(`/projects/${project.id}`)}
+                    onClick={() => {
+                      setButtonLoading(`project-${project.id}`, true)
+                      router.push(`/projects/${project.id}`)}}
                     style={{ 
                       cursor: 'pointer',
                       flex: 1,
@@ -674,7 +710,7 @@ const ProjectCard = ({ project }: { project: BrainstormingProject }) => (
                       minHeight: 0,
                     }}
                   >
-                    <ProjectCard project={project} />
+                    <ProjectCard project={project} isLoading={loadingStates[`project-${project.id}`]} />
                   </div>
 
                   {/* Action buttons at bottom */}
@@ -686,8 +722,11 @@ const ProjectCard = ({ project }: { project: BrainstormingProject }) => (
                       leftSection={<IconFolderOpen size={14} />}
                       onClick={(e) => {
                         e.stopPropagation();
+                        setButtonLoading(`project-${project.id}`, true);
                         router.push(`/projects/${project.id}`);
                       }}
+                      loading={loadingStates[`project-${project.id}`]}
+                      disabled={loadingStates[`project-${project.id}`] || loadingStates[`draft-${project.id}`]}
                     >
                       Buka Project
                     </Button>
@@ -698,8 +737,11 @@ const ProjectCard = ({ project }: { project: BrainstormingProject }) => (
                       leftSection={<IconFileText size={14} />}
                       onClick={(e) => {
                         e.stopPropagation();
+                        setButtonLoading(`draft-${project.id}`, true);
                         router.push(`/projects/${project.id}/draft`);
                       }}
+                      loading={loadingStates[`draft-${project.id}`]}
+                      disabled={loadingStates[`project-${project.id}`] || loadingStates[`draft-${project.id}`]}
                     >
                       Draft
                     </Button>
