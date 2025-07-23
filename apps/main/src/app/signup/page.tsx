@@ -59,7 +59,7 @@ export default function SignUpPage() {
       } else if (result?.success){
         await new Promise(resolve => setTimeout(resolve, 200));
 
-        const brainUrl = `${process.env.NEXT_PUBLIC_BRAIN_APP_URL || 'http://brain.lvh.me:3001'}/`;
+        const brainUrl = `${process.env.NEXT_PUBLIC_PROFILE_APP_URL || 'http://brain.lvh.me:3001'}/`;
         window.location.href = brainUrl;
       } else {
         setError("Unexpected response from server");
