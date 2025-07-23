@@ -30,7 +30,7 @@ export async function middleware(request: NextRequest) {
 
     // Jika pengguna terautentikasi dan mengakses root, redirect ke brain app
     if (session && pathname === '/') {
-      const redirectUrl = new URL('/', process.env.NEXT_PUBLIC_PROFILE_APP_URL || 'http://profile.lvh.me:3001');
+      const redirectUrl = new URL('/dashboard', process.env.NEXT_PUBLIC_PROFILE_APP_URL || 'http://profile.lvh.me:3001');
       console.log('Authenticated user accessing root, redirecting to brain app:', redirectUrl.toString());
       return NextResponse.redirect(redirectUrl);
     }
