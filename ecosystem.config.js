@@ -6,7 +6,7 @@ module.exports = {
       script: "npm",
       args: "run start:main",
       env: {
-        PORT: 6000
+        PORT: 6100
       }
     },
     {
@@ -30,3 +30,4 @@ module.exports = {
     
   ]
 };
+

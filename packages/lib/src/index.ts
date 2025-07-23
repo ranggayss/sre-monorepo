@@ -1,5 +1,5 @@
 
-export * from './event-bus';
+export { default as eventBus } from './event-bus';
 
 export { prisma } from './prisma'
 

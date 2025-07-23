@@ -249,7 +249,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         const createdChildNodes: any[] = [];
 
-        let createdEdges = [];
+        let createdEdges: any[] = [];
         if (sessionId){
           const articleInSession = await prisma.article.findMany({
             where: {

@@ -44,13 +44,13 @@ export async function GET(request: NextRequest) {
     })
 
     // Process analytics untuk setiap user menggunakan relasi
-    const userAnalytics = users.map((user) => {
+    const userAnalytics = users.map((user: any) => {
       // Calculate stats menggunakan relasi
-      const totalNodes = user.brainstormingSession.reduce((acc, session) => {
+      const totalNodes = user.brainstormingSession.reduce((acc: number, session: any) => {
         return acc + session.articles.reduce((nodeAcc, article) => nodeAcc + article.nodes.length, 0)
       }, 0)
 
-      const totalEdges = user.brainstormingSession.reduce((acc, session) => {
+      const totalEdges = user.brainstormingSession.reduce((acc: number, session: any) => {
         return acc + session.articles.reduce((edgeAcc, article) => edgeAcc + article.edges.length, 0)
       }, 0)
 

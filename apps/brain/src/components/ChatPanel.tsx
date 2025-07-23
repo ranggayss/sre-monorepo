@@ -1005,9 +1005,9 @@ export default function ChatPanel({
     }
 
     try {
-      const parts = []
-      const remainingText = text
-      let currentIndex = 0
+      const parts: (string | React.ReactElement)[] = [];
+      const remainingText = text;
+      let currentIndex = 0;
 
       // Create a map of reference marks to reference objects
       const refMap = new Map()

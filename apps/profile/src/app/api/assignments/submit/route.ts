@@ -238,6 +238,14 @@ import { createServerSupabaseClient } from "@sre-monorepo/lib"
 //   }
 // }
 
+type FileMeta = {
+  id: string;
+  name: string;
+  url: string;
+  size: number;
+  type: string;
+};
+
 export async function POST(request: NextRequest) {
   try {
     // Verify authentication
@@ -263,7 +271,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate files if any
-    const processedFiles = []
+
+    const processedFiles: FileMeta[] = []
     if (files && files.length > 0) {
       for (const file of files) {
         if (file instanceof File) {

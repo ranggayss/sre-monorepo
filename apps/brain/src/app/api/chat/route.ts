@@ -3,7 +3,7 @@ import { prisma } from '@sre-monorepo/lib';
 // import { chatAI } from '@/utils/chatAI';
 import { createServerSupabaseClient } from '@sre-monorepo/lib';
 
-export async function POST(req: NextRequest, res: NextResponse){
+export async function POST(req: NextRequest){
 
     const body = await req.json();
     const { sessionId, mode, nodeId, nodeIds, question, contextNodeIds, contextEdgeIds, forceWeb } = body;
@@ -89,7 +89,14 @@ let articleIdsForVectorDB: string[] = [];
             },
         });
         // Pastikan tidak ada duplikat dan hanya ambil string yang valid
-        articleIdsForVectorDB = [...new Set(nodesWithArticleId.map(node => node.articleId).filter((id): id is string => id !== null))];
+        articleIdsForVectorDB = [
+  ...new Set(
+    (nodesWithArticleId as { articleId: string | null }[])
+      .map((node) => node.articleId)
+      .filter((id): id is string => typeof id === "string")
+  ),
+];
+
     }
 
     let answer: any;
