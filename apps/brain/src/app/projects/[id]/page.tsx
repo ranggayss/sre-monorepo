@@ -1345,7 +1345,7 @@ export default function Home() {
                       minWidth: 120
                     }}
                   >
-                    <Select
+                    {/* <Select
                       value={graph}
                       onChange={(value) => {
                         if (value) {
@@ -1366,7 +1366,7 @@ export default function Home() {
                           fontSize: theme.fontSizes.sm,
                         }
                       }}
-                    />
+                    /> */}
                   </Box>
   
                   {/* Graph Container */}
