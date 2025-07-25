@@ -28,14 +28,14 @@ import {
 } from '@tabler/icons-react';
 
 const dashboard = [
+  // {
+  //   icon: <IconHome/>,
+  //   name: 'Home',
+  //   href: '/home'
+  // },
   {
     icon: <IconHome/>,
     name: 'Home',
-    href: '/home'
-  },
-  {
-    icon: <IconChartDots2Filled/>,
-    name: 'Knowledge Graph',
     href: '/',
   },
   // {
