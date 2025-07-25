@@ -361,8 +361,8 @@ export default function StudentAssignmentPage() {
     
     if (targetUrl) {
       // Buka di tab baru
-      // window.open(targetUrl, "_blank")
-      window.location.href = targetUrl;
+      window.open(targetUrl, "_blank")
+      // window.location.href = targetUrl;
     } else {
       notifications.show({
         title: "Error",
@@ -615,12 +615,12 @@ export default function StudentAssignmentPage() {
                           </Stack>
                         ) : (
                           <Box display="grid" style={{ gap: '20px'}}>
-                            <Button
+                            {/* <Button
                               leftSection={<IconUpload size={16} />}
                               onClick={() => handleSubmitAssignment(assignment)}
                             >
                               Kumpulkan Tugas
-                            </Button>
+                            </Button> */}
                             <Button
                               leftSection={<IconEye size={16} />}
                               color="green"
