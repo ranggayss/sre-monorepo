@@ -154,7 +154,9 @@ export function PricingSection() {
     <Box
       id="pricing"
       py={80}
-      bg={colorScheme === "dark" ? "var(--mantine-color-dark-7)" : "var(--mantine-color-gray-0)"}
+      style={{
+        backgroundColor: 'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7))'
+      }}
     >
       <Container size="xl">
         <Stack align="center" gap="xl" mb={60}>
