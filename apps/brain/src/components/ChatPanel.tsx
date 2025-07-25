@@ -840,7 +840,7 @@ export default function ChatPanel({
         <Group gap="xs" align="center">
           <Loader size="sm" color="blue" />
           <Text size="sm" c="dimmed" fw={500}>
-            Sedang mengetik...
+            Sedang berpikir...
           </Text>
           <Box style={{ display: "flex", gap: "2px", marginLeft: "8px" }}>
             {[0, 1, 2].map((i) => (
