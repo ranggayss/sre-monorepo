@@ -60,7 +60,8 @@ export default function SignUpPage() {
         await new Promise(resolve => setTimeout(resolve, 200));
 
         const brainUrl = `${process.env.NEXT_PUBLIC_PROFILE_APP_URL || 'http://brain.lvh.me:3001'}/`;
-        window.location.href = brainUrl;
+        // window.location.href = brainUrl;
+        window.open(brainUrl, '_blank');
       } else {
         setError("Unexpected response from server");
         setLoading(false);
@@ -150,10 +151,10 @@ export default function SignUpPage() {
           }}
         >
           <Title order={1} mb={0} fw={700}>
-            Sign Up
+            Daftar Akun
           </Title>
           <Text mb="sm" c="dimmed">
-            Enter your information to create an account
+            Masukkan informasi Anda untuk membuat akun
           </Text>
 
           <form onSubmit={handleSignUp}
@@ -170,18 +171,18 @@ export default function SignUpPage() {
                   {error}
                 </Alert>
               )}
-              <Text fw={600}>Full Name</Text>
+              <Text fw={600}>Nama Lengkap</Text>
               <TextInput
-                placeholder="Enter your full name here..."
+                placeholder="Masukkan nama lengkap Anda..."
                 value={form.fullName}
                 onChange={(e) =>
                   setForm({ ...form, fullName: e.currentTarget.value })
                 }
               />
 
-              <Text fw={600}>SID or NIM</Text>
+              <Text fw={600}>SID atau NIM</Text>
               <TextInput
-                placeholder="Enter your student id or NIM here..."
+                placeholder="Masukkan SID atau NIM Anda..."
                 value={form.sid}
                 onChange={(e) =>
                   setForm({ ...form, sid: e.currentTarget.value })
@@ -190,14 +191,14 @@ export default function SignUpPage() {
 
               <Text fw={600}>Email</Text>
               <TextInput
-                placeholder="Enter your email here..."
+                placeholder="Masukkan email Anda..."
                 value={form.email}
                 onChange={(e) =>
                   setForm({ ...form, email: e.currentTarget.value })
                 }
               />
 
-              <Text fw={600}>Group</Text>
+              <Text fw={600}>Grup</Text>
               <Radio.Group
                 value={form.group}
                 onChange={(value) => setForm({ ...form, group: value })}
@@ -208,9 +209,9 @@ export default function SignUpPage() {
                 </Group>
               </Radio.Group>
 
-              <Text fw={600}>Password</Text>
+              <Text fw={600}>Kata Sandi</Text>
               <PasswordInput
-                placeholder="Enter your password here..."
+                placeholder="Masukkan kata sandi Anda..."
                 value={form.password}
                 onChange={(e) =>
                   setForm({ ...form, password: e.currentTarget.value })
@@ -218,8 +219,21 @@ export default function SignUpPage() {
               />
 
               <Button fullWidth mt="xs" color="blue" type="submit" loading={loading} disabled={loading}>
-                {loading ? "Registering..." : "Register"}
+                {loading ? "Daftar..." : "Daftar"}
               </Button>
+              {/* Tambahkan navigasi ke Sign In */}
+              <Text ta="center" size="sm" mt="md">
+                Sudah punya akun?{" "}
+                <Text 
+                  component="span" 
+                  c="blue" 
+                  fw={600}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => router.push('/signin')}
+                >
+                  Masuk di sini
+                </Text>
+              </Text>
             </Stack>
           </form>
         </Box>
