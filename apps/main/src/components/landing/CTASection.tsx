@@ -10,20 +10,20 @@ export function CTASection() {
       <Container size="xl" py={80}>
         <Stack align="center" gap="xl">
           <Title order={2} size="3rem" fw={700} ta="center" c="white">
-            Ready to Transform Your Research Process?
+            Siap Mengubah Proses Penelitian Anda?
           </Title>
 
           <Text size="xl" ta="center" c="white" opacity={0.9} maw={700}>
-            Join thousands of researchers who have revolutionized their workflow with AI-powered writing assistance and
-            visual knowledge mapping.
+            Bergabunglah dengan ribuan peneliti yang telah merevolusi alur kerja mereka dengan bantuan penulisan bertenaga AI dan
+            pemetaan pengetahuan visual.
           </Text>
 
           <Group gap="md" mt="md">
             <Button size="xl" variant="white" leftSection={<IconArrowRight size={20} />}>
-              Start Your Free Trial
+              Mulai Uji Coba Gratis
             </Button>
             <Button size="xl" variant="outline" c="white" style={{ borderColor: "white" }}>
-              Schedule a Demo
+              Jadwalkan Demo
             </Button>
           </Group>
 
@@ -33,7 +33,7 @@ export function CTASection() {
                 <IconCheck size={12} />
               </ThemeIcon>
               <Text size="sm" c="white" opacity={0.9}>
-                14-day free trial
+                Uji coba gratis 14 hari
               </Text>
             </Group>
             <Group gap="xs">
@@ -41,7 +41,7 @@ export function CTASection() {
                 <IconCheck size={12} />
               </ThemeIcon>
               <Text size="sm" c="white" opacity={0.9}>
-                No credit card required
+                Tidak perlu kartu kredit
               </Text>
             </Group>
             <Group gap="xs">
@@ -49,7 +49,7 @@ export function CTASection() {
                 <IconCheck size={12} />
               </ThemeIcon>
               <Text size="sm" c="white" opacity={0.9}>
-                Cancel anytime
+                Batalkan kapan saja
               </Text>
             </Group>
           </Group>

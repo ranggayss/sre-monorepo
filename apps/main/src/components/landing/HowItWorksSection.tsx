@@ -18,54 +18,53 @@ import { IconUpload, IconBrain, IconPencil, IconDownload } from "@tabler/icons-r
 const steps = [
   {
     icon: IconUpload,
-    title: "Upload Your Research",
+    title: "Unggah Penelitian Anda",
     description:
-      "Import your research articles, papers, and documents into the platform. Our AI will analyze and categorize them automatically.",
+      "Impor artikel penelitian, makalah, dan dokumen Anda ke dalam platform. AI kami akan menganalisis dan mengkategorikannya secara otomatis.",
     color: "blue",
   },
   {
     icon: IconBrain,
-    title: "Build Your Knowledge Brain",
+    title: "Bangun Peta Pengetahuan",
     description:
-      "Watch as your articles are transformed into an interactive knowledge graph, revealing connections and relationships between concepts.",
+      "Saksikan artikel-artikel Anda diubah menjadi grafik pengetahuan interaktif yang mengungkap koneksi dan hubungan antar konsep.",
     color: "purple",
   },
   {
     icon: IconPencil,
-    title: "Write with AI Assistance",
+    title: "Tulis dengan Bantuan AI",
     description:
-      "Use our smart writer to craft your research draft with AI suggestions, automatic citations, and real-time reference management.",
+      "Gunakan penulis cerdas kami untuk menyusun draft penelitian dengan saran AI, sitasi otomatis, dan manajemen referensi real-time.",
     color: "green",
   },
   {
     icon: IconDownload,
-    title: "Export & Share",
+    title: "Unduh & Bagikan",
     description:
-      "Export your completed draft in your preferred format and share your knowledge graph with collaborators.",
+      "Unduh draft yang sudah selesai dalam berbagai format dan bagikan peta pengetahuan Anda dengan tim kolaborasi.",
     color: "orange",
   },
 ]
 
 export function HowItWorksSection() {
+  const { colorScheme } = useMantineColorScheme()
   return (
     <Box
       id="how-it-works"
       py={80}
-      style={{
-        backgroundColor: 'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7))'
-      }}
+      bg={colorScheme === "dark" ? "var(--mantine-color-dark-7)" : "var(--mantine-color-gray-0)"}
     >
       <Container size="xl">
         <Stack align="center" gap="xl" mb={60}>
           <Badge size="lg" variant="light" color="blue" radius="xl">
-            How It Works
+            Cara Kerja
           </Badge>
           <Title order={2} size="2.5rem" fw={700} ta="center">
-            From Research to Draft in 4 Simple Steps
+            Dari Penelitian ke Draft dalam 4 Langkah Sederhana
           </Title>
           <Text size="lg" c="dimmed" ta="center" maw={600}>
-            Our streamlined workflow helps you transform scattered research into coherent, well-cited academic drafts
-            with unprecedented efficiency.
+            Alur kerja yang efisien membantu Anda mengubah penelitian yang tersebar menjadi draft akademik yang koheren 
+            dan tersitasi dengan baik secara efisien.
           </Text>
         </Stack>
 
@@ -82,7 +81,7 @@ export function HowItWorksSection() {
               <Card shadow="sm" padding="xl" radius="md" withBorder mt="md">
                 <Group gap="md" mb="md">
                   <Badge size="lg" variant="light" color={step.color}>
-                    Step {index + 1}
+                    Langkah {index + 1}
                   </Badge>
                 </Group>
                 <Title order={3} size="xl" fw={600} mb="sm">

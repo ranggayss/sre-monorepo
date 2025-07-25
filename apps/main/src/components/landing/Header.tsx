@@ -28,11 +28,11 @@ export function Header() {
   }, [])
 
   const navItems = [
-    { label: "Features", href: "#features" },
-    { label: "How it Works", href: "#how-it-works" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Fitur", href: "#features" },
+    { label: "Cara Kerja", href: "#how-it-works" },
+    { label: "Testimoni", href: "#testimonials" },
+    { label: "Harga", href: "#pricing" },
+    { label: "Pertanyaan Umum", href: "#faq" },
   ]
 
   return (
@@ -80,10 +80,10 @@ export function Header() {
               {!mounted && <IconMoon size={18} />} {/* Render a default icon on server */}
             </ActionIcon>
             <Button variant="subtle" component={Link} href="/signin">
-              Sign In
+              Masuk
             </Button>
             <Button component={Link} href="/signup">
-              Get Started
+              Mulai Sekarang
             </Button>
           </Group>
 

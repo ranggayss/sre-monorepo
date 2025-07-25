@@ -6,27 +6,27 @@ import Link from "next/link"
 
 const footerLinks = {
   product: [
-    { label: "Features", href: "#features" },
-    { label: "Pricing", href: "#pricing" },
+    { label: "Fitur", href: "#features" },
+    { label: "Harga", href: "#pricing" },
     { label: "API", href: "/api" },
-    { label: "Integrations", href: "/integrations" },
+    { label: "Integrasi", href: "/integrations" },
   ],
   resources: [
-    { label: "Documentation", href: "/docs" },
-    { label: "Tutorials", href: "/tutorials" },
+    { label: "Dokumentasi", href: "/docs" },
+    { label: "Tutorial", href: "/tutorials" },
     { label: "Blog", href: "/blog" },
-    { label: "Research Guide", href: "/guide" },
+    { label: "Panduan Penelitian", href: "/guide" },
   ],
   company: [
-    { label: "About", href: "/about" },
-    { label: "Careers", href: "/careers" },
-    { label: "Contact", href: "/contact" },
-    { label: "Press Kit", href: "/press" },
+    { label: "Tentang Kami", href: "/about" },
+    { label: "Karir", href: "/careers" },
+    { label: "Kontak", href: "/contact" },
+    { label: "Kit Media", href: "/press" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
-    { label: "Cookie Policy", href: "/cookies" },
+    { label: "Kebijakan Privasi", href: "/privacy" },
+    { label: "Syarat Layanan", href: "/terms" },
+    { label: "Kebijakan Cookie", href: "/cookies" },
     { label: "GDPR", href: "/gdpr" },
   ],
 }
@@ -53,7 +53,7 @@ export function Footer() {
               </Text> */}
             </Group>
             <Text size="sm" c="dimmed" maw={250}>
-              Empowering researchers with AI-driven tools for intelligent writing and visual knowledge mapping.
+              Memberdayakan peneliti dengan alat bertenaga AI untuk penulisan cerdas dan pemetaan pengetahuan visual.
             </Text>
             <Group gap="xs">
               <ActionIcon variant="subtle" size="lg" color="gray">
@@ -70,7 +70,7 @@ export function Footer() {
 
           <Stack gap="md">
             <Text fw={600} size="sm">
-              Product
+              Produk
             </Text>
             {footerLinks.product.map((link) => (
               <Anchor
@@ -88,7 +88,7 @@ export function Footer() {
 
           <Stack gap="md">
             <Text fw={600} size="sm">
-              Resources
+              Sumber Daya
             </Text>
             {footerLinks.resources.map((link) => (
               <Anchor
@@ -106,7 +106,7 @@ export function Footer() {
 
           <Stack gap="md">
             <Text fw={600} size="sm">
-              Company
+              Perusahaan
             </Text>
             {footerLinks.company.map((link) => (
               <Anchor
@@ -124,7 +124,7 @@ export function Footer() {
 
           <Stack gap="md">
             <Text fw={600} size="sm">
-              Legal
+              Hukum
             </Text>
             {footerLinks.legal.map((link) => (
               <Anchor
@@ -145,17 +145,17 @@ export function Footer() {
 
         <Group justify="space-between">
           <Text size="sm" c="dimmed">
-            © {new Date().getFullYear()} My-SRE. All rights reserved.
+            © {new Date().getFullYear()} My-SRE. Hak cipta dilindungi undang-undang.
           </Text>
           <Group gap="md">
             <Anchor href="/privacy" size="sm" c="dimmed" style={{ textDecoration: "none" }}>
-              Privacy
+              Privasi
             </Anchor>
             <Anchor href="/terms" size="sm" c="dimmed" style={{ textDecoration: "none" }}>
-              Terms
+              Syarat
             </Anchor>
             <Anchor href="/cookies" size="sm" c="dimmed" style={{ textDecoration: "none" }}>
-              Cookies
+              Cookie
             </Anchor>
           </Group>
         </Group>

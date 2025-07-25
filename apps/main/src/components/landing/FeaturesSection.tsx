@@ -16,73 +16,73 @@ import {
 const features = [
   {
     icon: IconPencil,
-    title: "Smart Writer",
+    title: "Penulis Cerdas",
     description:
-      "AI-powered writing assistant that helps you craft compelling research drafts with intelligent suggestions and structure guidance.",
+      "Asisten penulisan bertenaga AI yang membantu Anda membuat draft penelitian yang menarik dengan saran cerdas dan panduan struktur.",
     color: "blue",
-    category: "Writer",
+    category: "Tulis",
   },
   {
     icon: IconQuote,
-    title: "Citation Management",
+    title: "Manajemen Sitasi",
     description:
-      "Seamlessly cite articles from your Brain knowledge base with automatic formatting and reference list generation.",
+      "Sitasi artikel dari basis pengetahuan Brain Anda dengan mudah, termasuk format otomatis dan pembuatan daftar referensi.",
     color: "green",
-    category: "Writer",
+    category: "Tulis",
   },
   {
     icon: IconFileText,
-    title: "Reference Lists",
+    title: "Daftar Referensi",
     description:
-      "Automatically generated and formatted reference lists that update in real-time as you add citations to your draft.",
+      "Daftar referensi yang dibuat secara otomatis dan terformat yang diperbarui secara real-time saat Anda menambah sitasi.",
     color: "orange",
-    category: "Writer",
+    category: "Tulis",
   },
   {
     icon: IconBrain,
-    title: "Knowledge Brain",
+    title: "Peta Pengetahuan",
     description:
-      "Visual knowledge mapping system that organizes your research articles into an interactive graph network.",
+      "Sistem pemetaan pengetahuan visual yang mengorganisir artikel penelitian Anda menjadi jaringan grafik interaktif.",
     color: "purple",
-    category: "Brain",
+    category: "Ide",
   },
   {
     icon: IconGraph,
-    title: "Interactive Graph",
+    title: "Grafik Interaktif",
     description:
-      "Explore connections between articles through nodes and edges, revealing hidden relationships in your research.",
+      "Jelajahi koneksi antar artikel melalui node dan edge, mengungkap hubungan tersembunyi dalam penelitian Anda.",
     color: "teal",
-    category: "Brain",
+    category: "Ide",
   },
   {
     icon: IconMessageChatbot,
-    title: "AI Chat Assistant",
-    description: "Ask questions about your research collection and get intelligent insights from your knowledge base.",
+    title: "Asisten Chat AI",
+    description: "Ajukan pertanyaan tentang koleksi penelitian Anda dan dapatkan wawasan cerdas dari basis pengetahuan.",
     color: "red",
-    category: "Brain",
+    category: "Ide",
   },
 //   {
 //     icon: IconSearch,
-//     title: "Smart Search",
+//     title: "Pencarian Cerdas",
 //     description:
-//       "Find relevant articles and connections across your entire research collection with semantic search capabilities.",
+//       "Temukan artikel dan koneksi yang relevan di seluruh koleksi penelitian Anda dengan kemampuan pencarian semantik.",
 //     color: "indigo",
-//     category: "Core",
+//     category: "Inti",
 //   },
 //   {
 //     icon: IconDownload,
-//     title: "Export Options",
+//     title: "Opsi Unduh",
 //     description:
-//       "Export your drafts and references in multiple formats including PDF, Word, LaTeX, and citation styles.",
+//       "Unduh draft dan referensi Anda dalam berbagai format termasuk PDF, Word, LaTeX, dan gaya sitasi.",
 //     color: "cyan",
-//     category: "Core",
+//     category: "Inti",
 //   },
 //   {
 //     icon: IconShare,
-//     title: "Collaboration",
-//     description: "Share your research drafts and knowledge graphs with collaborators for seamless teamwork.",
+//     title: "Kolaborasi",
+//     description: "Bagikan draft penelitian dan grafik pengetahuan Anda dengan kolaborator untuk kerja tim yang seamless.",
 //     color: "yellow",
-//     category: "Core",
+//     category: "Inti",
 //   },
 ]
 
@@ -92,14 +92,14 @@ export function FeaturesSection() {
       <Container size="xl">
         <Stack align="center" gap="xl" mb={60}>
           <Badge size="lg" variant="light" color="blue" radius="xl">
-            Features
+            Fitur
           </Badge>
           <Title order={2} size="2.5rem" fw={700} ta="center">
-            Everything You Need for Research Excellence
+            Semua yang Anda Butuhkan untuk Penelitian Unggul
           </Title>
           <Text size="lg" c="dimmed" ta="center" maw={600}>
-            Our comprehensive platform combines intelligent writing tools with visual knowledge management to
-            revolutionize your research workflow.
+            Platform komprehensif kami menggabungkan alat penulisan cerdas dengan manajemen pengetahuan visual 
+            untuk merevolusi alur kerja penelitian Anda.
           </Text>
         </Stack>
 

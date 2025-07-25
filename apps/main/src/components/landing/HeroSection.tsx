@@ -15,20 +15,20 @@ export function HeroSection() {
           <Badge size="lg" variant="light" color="blue" radius="xl">
             {/* 🚀 Launching Soon - Join the Beta */}
             {/* Welcome */}
-            💡 Acces Now - Try Now!
+            💡 Akses Awal - Coba Sekarang!
           </Badge>
 
           <Title order={1} size="3.5rem" fw={900} ta="center" className={classes.title} maw={800}>
-            Design Your Research{" "}
+            Desain{" "}
             <Text component="span" c="blue" inherit>
               Draft
             </Text>{" "}
-            with AI-Powered Tools
+            Penelitian Anda dengan Tools Bertenaga AI
           </Title>
 
           <Text size="xl" className={classes.descriptionText} ta="center" maw={600}>
-            Streamline your research process with intelligent writing assistance and visual knowledge mapping. From
-            draft creation to citation management, we've got you covered.
+            Sederhanakan proses penelitian Anda dengan bantuan penulisan cerdas dan pemetaan pengetahuan visual. 
+            Dari pembuatan draft hingga manajemen sitasi, kami siap membantu Anda.
           </Text>
 
           <Group gap="md">
@@ -36,11 +36,11 @@ export function HeroSection() {
             onClick={(e) => router.push('/signup')}
             >
               {/* Start Free Trial */}
-              Get Started
+              Mulai Sekarang
             </Button>
             <Button size="lg" variant="outline" onClick={(e) => router.push('/signin')}>
               {/* Watch Demo */}
-              Sign In
+              Masuk
             </Button>
           </Group>
 
@@ -51,7 +51,7 @@ export function HeroSection() {
               </ThemeIcon>
               <Text size="sm" className={classes.descriptionText}>
                 {/* No credit card required */}
-                No commitment
+                Akses langsung
               </Text>
             </Group>
             <Group gap="xs">
@@ -60,7 +60,7 @@ export function HeroSection() {
               </ThemeIcon>
               <Text size="sm" className={classes.descriptionText}>
                 {/* 14-day free trial */}
-                Explore features
+                Fitur lengkap
               </Text>
             </Group>
             <Group gap="xs">
@@ -69,17 +69,17 @@ export function HeroSection() {
               </ThemeIcon>
               <Text size="sm" className={classes.descriptionText}>
                 {/* Cancel anytime */}
-                Flexible usage
+                Penggunaan fleksibel
               </Text>
             </Group>
           </Group>
 
-          <Box mt={60} w="100%" maw={1000}>
+          <Box mt={60} w="100vh" maw={1000}>
             <Image
-              src='/images/graph.png'
+              src='/images/brainn.png'
               alt="My-SRE Dashboard"
               radius="lg"
-              height={300}
+              height={450}
               className={classes.heroImage}
             />
           </Box>

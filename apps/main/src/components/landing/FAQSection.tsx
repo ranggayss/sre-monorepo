@@ -4,44 +4,44 @@ import { Container, Title, Text, Accordion, Stack, Badge, Box } from "@mantine/c
 
 const faqs = [
   {
-    question: "How does the AI writing assistant work?",
+    question: "Bagaimana cara kerja asisten AI untuk menulis?",
     answer:
-      "Our AI writing assistant analyzes your research context and provides intelligent suggestions for structure, content, and citations. It learns from your writing style and research domain to offer increasingly personalized assistance.",
+      "Asisten AI kami menganalisis konteks penelitian Anda dan memberikan saran cerdas untuk struktur, konten, dan kutipan. Sistem ini belajar dari gaya penulisan dan domain penelitian Anda untuk memberikan bantuan yang semakin personal.",
   },
   {
-    question: "Can I import my existing research library?",
+    question: "Bisakah saya mengimpor perpustakaan penelitian yang sudah ada?",
     answer:
-      "Yes! You can import research articles from various sources including PDF files, DOI links, and popular reference managers like Zotero, Mendeley, and EndNote. Our system will automatically extract metadata and build your knowledge graph.",
+      "Tentu saja! Anda dapat mengimpor artikel penelitian dari berbagai sumber termasuk file PDF, tautan DOI, dan pengelola referensi populer seperti Zotero, Mendeley, dan EndNote. Sistem kami akan secara otomatis mengekstrak metadata dan membangun grafik pengetahuan Anda.",
   },
   {
-    question: "How does the Brain visualization work?",
+    question: "Bagaimana cara kerja visualisasi Brain?",
     answer:
-      "The Brain creates an interactive knowledge graph where each article becomes a node, and connections (edges) are formed based on shared concepts, citations, and semantic relationships. You can explore these connections visually and chat with the AI about your research collection.",
+      "Brain menciptakan grafik pengetahuan interaktif di mana setiap artikel menjadi sebuah node, dan koneksi (edge) terbentuk berdasarkan konsep yang sama, kutipan, dan hubungan semantik. Anda dapat menjelajahi koneksi ini secara visual dan berdiskusi dengan AI tentang koleksi penelitian Anda.",
   },
   {
-    question: "What citation formats are supported?",
+    question: "Format kutipan apa saja yang didukung?",
     answer:
-      "We support all major citation formats including APA, MLA, Chicago, Harvard, IEEE, and many more. Professional and Enterprise plans also allow for custom citation format creation.",
+      "Kami mendukung semua format kutipan utama termasuk APA, MLA, Chicago, Harvard, IEEE, dan banyak lagi. Paket Professional dan Enterprise juga memungkinkan pembuatan format kutipan khusus.",
   },
   {
-    question: "Is my research data secure?",
+    question: "Apakah data penelitian saya aman?",
     answer:
-      "Absolutely. We use enterprise-grade encryption for all data in transit and at rest. Your research data is never shared with third parties, and you maintain full ownership of your content. We are GDPR compliant and follow strict data protection protocols.",
+      "Tentu saja. Kami menggunakan enkripsi tingkat enterprise untuk semua data dalam transit dan saat disimpan. Data penelitian Anda tidak pernah dibagikan kepada pihak ketiga, dan Anda mempertahankan kepemilikan penuh atas konten Anda. Kami mematuhi GDPR dan mengikuti protokol perlindungan data yang ketat.",
   },
   {
-    question: "Can I collaborate with my team?",
+    question: "Bisakah saya berkolaborasi dengan tim saya?",
     answer:
-      "Yes! Professional and Enterprise plans include team collaboration features. You can share knowledge graphs, co-write drafts, and manage team access to different research projects.",
+      "Ya! Paket Professional dan Enterprise menyediakan fitur kolaborasi tim. Anda dapat berbagi grafik pengetahuan, menulis draft bersama, dan mengelola akses tim ke berbagai proyek penelitian.",
   },
   {
-    question: "What export formats are available?",
+    question: "Format ekspor apa saja yang tersedia?",
     answer:
-      "You can export your drafts in multiple formats including PDF, Word (DOCX), LaTeX, HTML, and plain text. Reference lists can be exported in various citation formats or as BibTeX files.",
+      "Anda dapat mengekspor draft dalam berbagai format termasuk PDF, Word (DOCX), LaTeX, HTML, dan teks biasa. Daftar referensi dapat diekspor dalam berbagai format kutipan atau sebagai file BibTeX.",
   },
   {
-    question: "How does the free trial work?",
+    question: "Bagaimana cara kerja uji coba gratis?",
     answer:
-      "Our 14-day free trial gives you full access to all features of your selected plan. No credit card is required to start, and you can cancel anytime during the trial period with no obligations.",
+      "Uji coba gratis 14 hari kami memberikan Anda akses penuh ke semua fitur dari paket yang Anda pilih. Tidak perlu kartu kredit untuk memulai, dan Anda dapat membatalkan kapan saja selama periode uji coba tanpa kewajiban apapun.",
   },
 ]
 
@@ -51,13 +51,14 @@ export function FAQSection() {
       <Container size="md">
         <Stack align="center" gap="xl" mb={60}>
           <Badge size="lg" variant="light" color="blue" radius="xl">
-            FAQ
+            Pertanyaan Umum
           </Badge>
           <Title order={2} size="2.5rem" fw={700} ta="center">
-            Frequently Asked Questions
+            Pertanyaan yang Sering Diajukan
           </Title>
           <Text size="lg" c="dimmed" ta="center" maw={600}>
-            Find answers to common questions about My-SRE and how it can help streamline your research workflow.
+            Temukan jawaban untuk pertanyaan umum tentang ResearchCraft dan bagaimana aplikasi ini dapat membantu 
+            menyederhanakan alur kerja penelitian Anda.
           </Text>
         </Stack>
 

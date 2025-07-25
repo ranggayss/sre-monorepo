@@ -22,113 +22,125 @@ import { useState } from "react"
 const plans = {
   monthly: [
     {
-      name: "Starter",
-      price: "$19",
-      period: "/month",
-      description: "Perfect for individual researchers and students",
+      name: "Tulis",
+      price: "Rp 0",
+      period: "/bulan",
+      description: "Sempurna untuk penulisan akademik individu",
       features: [
-        { text: "Up to 100 articles in Brain", included: true },
-        { text: "Basic AI writing assistance", included: true },
-        { text: "Standard citation formats", included: true },
-        { text: "Export to PDF & Word", included: true },
-        { text: "Email support", included: true },
-        { text: "Advanced graph analytics", included: false },
-        { text: "Team collaboration", included: false },
-        { text: "Priority support", included: false },
+        { text: "Tulis draft artikel unlimited", included: true },
+        { text: "Lihat dan kelola artikel", included: true },
+        { text: "Daftar artikel terorganisir", included: true },
+        { text: "Manajemen referensi otomatis", included: true },
+        { text: "Annotasi dasar", included: true },
+        { text: "Export PDF & Word", included: true },
+        { text: "Dukungan email", included: true },
+        { text: "Visualisasi artikel", included: false },
+        { text: "Chat AI dengan dokumen", included: false },
+        { text: "Kolaborasi tim", included: false },
       ],
-      cta: "Start Free Trial",
+      cta: "Mulai Uji Coba Gratis",
       popular: false,
     },
     {
-      name: "Professional",
-      price: "$49",
-      period: "/month",
-      description: "Ideal for active researchers and small teams",
+      name: "Tulis-Ide",
+      price: "Rp 0",
+      period: "/bulan",
+      description: "Ideal untuk peneliti aktif dengan kebutuhan visual",
       features: [
-        { text: "Up to 1,000 articles in Brain", included: true },
-        { text: "Advanced AI writing assistance", included: true },
-        { text: "All citation formats", included: true },
-        { text: "Export to all formats", included: true },
-        { text: "Priority email support", included: true },
-        { text: "Advanced graph analytics", included: true },
-        { text: "Team collaboration (5 members)", included: true },
-        { text: "24/7 chat support", included: false },
+        { text: "Semua fitur Tulis", included: true },
+        { text: "Visualisasi peta artikel", included: true },
+        { text: "Grafik hubungan konsep", included: true },
+        { text: "Chat AI dengan koleksi artikel", included: true },
+        { text: "Annotasi lanjutan dengan highlight", included: true },
+        { text: "Mind mapping otomatis", included: true },
+        { text: "Export dalam semua format", included: true },
+        { text: "Dukungan prioritas", included: true },
+        { text: "Kolaborasi tim (hingga 3 orang)", included: false },
+        { text: "Integrasi custom", included: false },
       ],
-      cta: "Start Free Trial",
+      cta: "Mulai Uji Coba Gratis",
       popular: true,
     },
     {
-      name: "Enterprise",
-      price: "$99",
-      period: "/month",
-      description: "For large teams and institutions",
+      name: "Kolaboratif",
+      price: "Rp 0",
+      period: "/bulan",
+      description: "Untuk tim peneliti dan institusi",
       features: [
-        { text: "Unlimited articles in Brain", included: true },
-        { text: "Premium AI writing assistance", included: true },
-        { text: "Custom citation formats", included: true },
-        { text: "Advanced export options", included: true },
-        { text: "24/7 priority support", included: true },
-        { text: "Advanced graph analytics", included: true },
-        { text: "Unlimited team collaboration", included: true },
-        { text: "Custom integrations", included: true },
+        { text: "Semua fitur Tulis-Ide", included: true },
+        { text: "Kolaborasi tim unlimited", included: true },
+        { text: "Co-writing real-time", included: true },
+        { text: "Berbagi workspace", included: true },
+        { text: "Komentar dan review kolaboratif", included: true },
+        { text: "Version control artikel", included: true },
+        { text: "Manajemen hak akses", included: true },
+        { text: "Dashboard admin tim", included: true },
+        { text: "Backup otomatis cloud", included: true },
+        { text: "Dukungan 24/7", included: true },
       ],
-      cta: "Contact Sales",
+      cta: "Hubungi Tim Penjualan",
       popular: false,
     },
   ],
   yearly: [
     {
-      name: "Starter",
-      price: "$15",
-      period: "/month",
-      description: "Perfect for individual researchers and students",
+      name: "Tulis",
+      price: "Rp 0",
+      period: "/bulan",
+      description: "Sempurna untuk penulisan akademik individu",
       features: [
-        { text: "Up to 100 articles in Brain", included: true },
-        { text: "Basic AI writing assistance", included: true },
-        { text: "Standard citation formats", included: true },
-        { text: "Export to PDF & Word", included: true },
-        { text: "Email support", included: true },
-        { text: "Advanced graph analytics", included: false },
-        { text: "Team collaboration", included: false },
-        { text: "Priority support", included: false },
+        { text: "Tulis draft artikel unlimited", included: true },
+        { text: "Lihat dan kelola artikel", included: true },
+        { text: "Daftar artikel terorganisir", included: true },
+        { text: "Manajemen referensi otomatis", included: true },
+        { text: "Annotasi dasar", included: true },
+        { text: "Export PDF & Word", included: true },
+        { text: "Dukungan email", included: true },
+        { text: "Visualisasi artikel", included: false },
+        { text: "Chat AI dengan dokumen", included: false },
+        { text: "Kolaborasi tim", included: false },
       ],
-      cta: "Start Free Trial",
+      cta: "Mulai Uji Coba Gratis",
       popular: false,
     },
     {
-      name: "Professional",
-      price: "$39",
-      period: "/month",
-      description: "Ideal for active researchers and small teams",
+      name: "Tulis-Ide",
+      price: "Rp 0",
+      period: "/bulan",
+      description: "Ideal untuk peneliti aktif dengan kebutuhan visual",
       features: [
-        { text: "Up to 1,000 articles in Brain", included: true },
-        { text: "Advanced AI writing assistance", included: true },
-        { text: "All citation formats", included: true },
-        { text: "Export to all formats", included: true },
-        { text: "Priority email support", included: true },
-        { text: "Advanced graph analytics", included: true },
-        { text: "Team collaboration (5 members)", included: true },
-        { text: "24/7 chat support", included: false },
+        { text: "Semua fitur Tulis", included: true },
+        { text: "Visualisasi peta artikel", included: true },
+        { text: "Grafik hubungan konsep", included: true },
+        { text: "Chat AI dengan koleksi artikel", included: true },
+        { text: "Annotasi lanjutan dengan highlight", included: true },
+        { text: "Mind mapping otomatis", included: true },
+        { text: "Export dalam semua format", included: true },
+        { text: "Dukungan prioritas", included: true },
+        { text: "Kolaborasi tim (hingga 3 orang)", included: false },
+        { text: "Integrasi custom", included: false },
       ],
-      cta: "Start Free Trial",
+      cta: "Mulai Uji Coba Gratis",
       popular: true,
     },
     {
-      name: "Enterprise",
-      price: "$79",
-      period: "/month",
-      description: "For large teams and institutions",
+      name: "Kolaboratif",
+      price: "Rp 0",
+      period: "/bulan",
+      description: "Untuk tim peneliti dan institusi",
       features: [
-        { text: "Unlimited articles in Brain", included: true },
-        { text: "Premium AI writing assistance", included: true },
-        { text: "Custom citation formats", included: true },
-        { text: "Advanced export options", included: true },
-        { text: "24/7 priority support", included: true },
-        { text: "Advanced graph analytics", included: true },
-        { text: "Unlimited team collaboration", included: true },
-        { text: "Custom integrations", included: true },
+        { text: "Semua fitur Tulis-Ide", included: true },
+        { text: "Kolaborasi tim unlimited", included: true },
+        { text: "Co-writing real-time", included: true },
+        { text: "Berbagi workspace", included: true },
+        { text: "Komentar dan review kolaboratif", included: true },
+        { text: "Version control artikel", included: true },
+        { text: "Manajemen hak akses", included: true },
+        { text: "Dashboard admin tim", included: true },
+        { text: "Backup otomatis cloud", included: true },
+        { text: "Dukungan 24/7", included: true },
       ],
-      cta: "Contact Sales",
+      cta: "Hubungi Tim Penjualan",
       popular: false,
     },
   ],
@@ -136,34 +148,33 @@ const plans = {
 
 export function PricingSection() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly")
+  const { colorScheme } = useMantineColorScheme()
 
   return (
     <Box
       id="pricing"
       py={80}
-      style={{
-        backgroundColor: 'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7))'
-      }}
+      bg={colorScheme === "dark" ? "var(--mantine-color-dark-7)" : "var(--mantine-color-gray-0)"}
     >
       <Container size="xl">
         <Stack align="center" gap="xl" mb={60}>
           <Badge size="lg" variant="light" color="blue" radius="xl">
-            Pricing
+            Harga
           </Badge>
           <Title order={2} size="2.5rem" fw={700} ta="center">
-            Simple, Transparent Pricing
+            Harga Sederhana dan Transparan
           </Title>
           <Text size="lg" c="dimmed" ta="center" maw={600}>
-            Choose the plan that fits your research needs. All plans include a 14-day free trial.
+            Pilih paket yang sesuai dengan kebutuhan penelitian Anda. Semua paket termasuk uji coba gratis 14 hari.
           </Text>
 
           <Tabs value={billingPeriod} onChange={(value) => setBillingPeriod(value as "monthly" | "yearly")}>
             <Tabs.List grow>
-              <Tabs.Tab value="monthly">Monthly</Tabs.Tab>
+              <Tabs.Tab value="monthly">Bulanan</Tabs.Tab>
               <Tabs.Tab value="yearly">
-                Yearly
+                Tahunan
                 <Badge size="xs" variant="filled" color="green" ml="xs">
-                  Save 20%
+                  Hemat 20%
                 </Badge>
               </Tabs.Tab>
             </Tabs.List>
@@ -186,7 +197,7 @@ export function PricingSection() {
               <Stack gap="md">
                 {plan.popular && (
                   <Badge size="sm" variant="filled" color="blue" style={{ alignSelf: "center" }}>
-                    Most Popular
+                    Paling Populer
                   </Badge>
                 )}
 
@@ -195,7 +206,7 @@ export function PricingSection() {
                     {plan.name}
                   </Title>
                   <Group gap="xs" justify="center">
-                    <Text size="3rem" fw={700} c="blue">
+                    <Text size="2.5rem" fw={700} c="blue">
                       {plan.price}
                     </Text>
                     <Text c="dimmed">{plan.period}</Text>
