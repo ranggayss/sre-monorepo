@@ -74,6 +74,17 @@ export default function SignUpPage() {
 
   }
 
+  const inputStyles = {
+    input: {
+      backgroundColor: "light-dark(white, var(--mantine-color-dark-7))",
+      borderColor: "light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-4))",
+      color: "light-dark(var(--mantine-color-dark-9), var(--mantine-color-gray-0))",
+      '&::placeholder': {
+        color: "light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2))",
+      }
+    }
+  };
+
   return (
     <Box
       style={{
@@ -95,7 +106,7 @@ export default function SignUpPage() {
           boxShadow: "0 0 20px rgba(0,0,0,0.2)",
           borderRadius: 16,
           overflow: "hidden",
-          backgroundColor: "white",
+          backgroundColor: "light-dark(white, var(--mantine-color-dark-6))",
         }}
       >
         {/* Panel Kiri - Ilustrasi dan Logo */}
@@ -133,7 +144,7 @@ export default function SignUpPage() {
           </Box>
 
           <Text size="xs" style={{ textAlign: "center" }}>
-            Knowledge Visualization Platform © 2025
+            My-SRE © 2025
           </Text>
         </Box>
 
@@ -148,9 +159,10 @@ export default function SignUpPage() {
             flexDirection: "column",
             justifyContent: "flex-start",
             overflow: "hidden",
+            backgroundColor: "light-dark(white, var(--mantine-color-dark-6))",
           }}
         >
-          <Title order={1} mb={0} fw={700}>
+          <Title order={1} mb={0} fw={700} style={{ color: "light-dark(var(--mantine-color-dark-9), var(--mantine-color-gray-0))" }}>
             Daftar Akun
           </Title>
           <Text mb="sm" c="dimmed">
@@ -178,6 +190,7 @@ export default function SignUpPage() {
                 onChange={(e) =>
                   setForm({ ...form, fullName: e.currentTarget.value })
                 }
+                styles={inputStyles}
               />
 
               <Text fw={600}>SID atau NIM</Text>
@@ -187,6 +200,7 @@ export default function SignUpPage() {
                 onChange={(e) =>
                   setForm({ ...form, sid: e.currentTarget.value })
                 }
+                styles={inputStyles}
               />
 
               <Text fw={600}>Email</Text>
@@ -196,6 +210,7 @@ export default function SignUpPage() {
                 onChange={(e) =>
                   setForm({ ...form, email: e.currentTarget.value })
                 }
+                styles={inputStyles}
               />
 
               <Text fw={600}>Grup</Text>
@@ -216,6 +231,7 @@ export default function SignUpPage() {
                 onChange={(e) =>
                   setForm({ ...form, password: e.currentTarget.value })
                 }
+                styles={inputStyles}
               />
 
               <Button fullWidth mt="xs" color="blue" type="submit" loading={loading} disabled={loading}>
