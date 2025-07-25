@@ -614,7 +614,7 @@ const ProjectCard = ({ project, isLoading }: { project: BrainstormingProject; is
             <IconPlus size={24} />
           </ThemeIcon>
           <Text size="lg" fw={500} ta="center">
-            Buat Brainstorming Baru
+            Buat Sesi Brainstorming Baru
           </Text>
           <Text size="sm" c="dimmed" ta="center">
             Mulai proyek penelitian baru dengan AI assistant
@@ -643,7 +643,7 @@ const ProjectCard = ({ project, isLoading }: { project: BrainstormingProject; is
                 <IconBrain size={24} />
               </ThemeIcon>
               <Text size="xl" fw={700}>
-                Brainstorming Projects
+                Sesi Brainstorming
               </Text>
             </Group>
             <Text c="dimmed">
@@ -659,11 +659,23 @@ const ProjectCard = ({ project, isLoading }: { project: BrainstormingProject; is
               onChange={(e) => setSearchQuery(e.currentTarget.value)}
               style={{ width: 300 }}
             />
-            <Button
+            {/* <Button
               leftSection={<IconPlus size={16} />}
               onClick={() => setCreateModalOpen(true)}
             >
               Buat Proyek Baru
+            </Button> */}
+            <Button
+              leftSection={<IconSearch size={16} />}
+              variant='light'
+              onClick={() => {
+                const searchInput = document.querySelector('input[placeholder="Cari proyek..."]') as HTMLInputElement;
+                if (searchInput){
+                  searchInput.focus();
+                }
+              }}
+            >
+              Cari Proyek
             </Button>
           </Group>
         </Group>
