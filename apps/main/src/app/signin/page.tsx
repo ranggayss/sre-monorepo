@@ -59,7 +59,8 @@ export default function LoginPage() {
         console.log('Redirecting to:', profileUrl);
         
         // Force full page navigation untuk cross-domain
-        window.location.href = profileUrl;
+        // window.location.href = profileUrl;
+        window.open(profileUrl, '_blank');
         
         // Alternative untuk same domain:
         // router.push(brainUrl);
@@ -113,10 +114,10 @@ export default function LoginPage() {
         >
           <Box style={{ textAlign: "center", marginBottom: 24 }}>
             <Title order={1} fw={800} c="dark" mb={4}>
-              SIGN IN
+              MASUK
             </Title>
             <Text c="dimmed" size="sm">
-              Enter your email below to login to your account
+              Masukkan email Anda untuk login ke akun Anda
             </Text>
           </Box>
 
@@ -135,7 +136,7 @@ export default function LoginPage() {
 
               <Text fw={600}>Email</Text>
               <TextInput
-                placeholder="Enter your email here..."
+                placeholder="Masukkan email Anda..."
                 value={email}
                 onChange={(e) => setEmail(e.currentTarget.value)}
                 required
@@ -143,9 +144,9 @@ export default function LoginPage() {
                 disabled={loading}
               />
 
-              <Text fw={600}>Password</Text>
+              <Text fw={600}>Kata Sandi</Text>
               <PasswordInput
-                placeholder="Enter your password here..."
+                placeholder="Masukkan kata sandi Anda..."
                 value={password}
                 onChange={(e) => setPassword(e.currentTarget.value)}
                 visible={showPassword}
@@ -159,13 +160,13 @@ export default function LoginPage() {
 
               <Group justify="space-between" mt="xs">
                 <Checkbox
-                  label="Remember me"
+                  label="Ingat saya"
                   checked={remember}
                   onChange={(e) => setRemember(e.currentTarget.checked)}
                   disabled={loading}
                 />
                 <Text size="sm" c="blue" style={{ cursor: "pointer" }}>
-                  Forgot your password?
+                  Lupa kata sandi?
                 </Text>
               </Group>
 
@@ -179,8 +180,21 @@ export default function LoginPage() {
                 loading={loading}
                 disabled={loading}
               >
-                {loading ? "Signing In..." : "Sign In"}
+                {loading ? "Masuk..." : "Masuk"}
               </Button>
+              {/* Tambahkan navigasi ke Sign Up */}
+              <Text ta="center" size="sm" mt="md">
+                Belum punya akun?{" "}
+                <Text 
+                  component="span" 
+                  c="blue" 
+                  fw={600}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => router.push('/signup')}
+                >
+                  Daftar di sini
+                </Text>
+              </Text>
             </Stack>
           </form>
         </Box>
@@ -220,7 +234,7 @@ export default function LoginPage() {
           </Box>
 
           <Text size="xs" style={{ textAlign: "center" }}>
-            Knowledge Visualization Platform © 2025
+            My-SRE © 2025
           </Text>
         </Box>
       </Box>
