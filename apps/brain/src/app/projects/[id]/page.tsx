@@ -910,7 +910,7 @@ export default function Home() {
 
   const handleNodeClick = useCallback((node: ExtendedNode) => {
     setSelectedEdge(null);
-    setSelectedNode(node);
+    setSelectedNode({...node});
     setDetailModalNode(node);
   }, []);
 
@@ -1193,7 +1193,7 @@ export default function Home() {
                       },
                       { 
                         value: 'detail', 
-                        label: 'Detail',
+                        label: 'Tabel',
                         // leftSection: <IconList size={16} />
                       },
                     ]}
