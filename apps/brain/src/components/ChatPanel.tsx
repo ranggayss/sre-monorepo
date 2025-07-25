@@ -1753,7 +1753,7 @@ export default function ChatPanel({
             </Box>
 
             {/* Enhanced Web Search Toggle */}
-            <Tooltip label={forceWeb ? "Pencarian web aktif" : "Pencarian web nonaktif"} position="top" withArrow>
+            {/* <Tooltip label={forceWeb ? "Pencarian web aktif" : "Pencarian web nonaktif"} position="top" withArrow>
               <Box
                 style={{
                   padding: "8px",
@@ -1785,7 +1785,7 @@ export default function ChatPanel({
                   }}
                 />
               </Box>
-            </Tooltip>
+            </Tooltip> */}
 
             {/* Enhanced Send Button */}
             <ActionIcon
