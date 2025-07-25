@@ -163,14 +163,14 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
         },
         {
           icon: <IconClipboardList size={20} />,
-          label: "My Assignments",
+          label: "Tugas Saya",
           href: "/dashboard/assignments",
-          badge: "NEW",
+          badge: "BARU",
           badgeColor: "blue",
         },
         {
           icon: <IconReportAnalytics size={20} />,
-          label: "My Analytics",
+          label: "Analitik Saya",
           href: "/dashboard/analytics",
         },
       ]
@@ -313,7 +313,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
       <AppShell.Navbar p="md">
         <Stack gap="xs">
           <Text size="xs" fw={700} c="gray.6" tt="uppercase" mb="sm">
-            {isAdmin() ? "Admin Menu" : "Student Menu"}
+            {isAdmin() ? "Menu Admin" : "Menu Siswa"}
           </Text>
           {navLinks.map((link) => (
             <NavLink
@@ -329,11 +329,11 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
           ))}
           <Divider my="md" />
           <Text size="xs" fw={700} c="gray.6" tt="uppercase" mb="sm">
-            System Info
+            Info Sistem
           </Text>
           <Box p="sm" bg="gray.0" style={{ borderRadius: "8px" }}>
             <Text size="xs" c="gray.6" mb="xs">
-              Role: {user?.role === "ADMIN" ? "Administrator" : "Student"}
+              Role: {user?.role === "ADMIN" ? "Administrator" : "Siswa"}
             </Text>
             <Group gap="xs">
               <Box w={8} h={8} bg="green" style={{ borderRadius: "50%" }} />
