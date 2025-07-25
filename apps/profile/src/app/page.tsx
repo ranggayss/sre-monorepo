@@ -284,7 +284,7 @@ export default function DashboardPage() {
           <Group justify="space-between">
             <div>
               <Text c="gray.6" size="sm" fw={700} tt="uppercase">
-                Brain Projects
+                Total Ide
               </Text>
               <Text fw={700} size="xl">
                 {stats.totalBrainProjects}
@@ -335,12 +335,12 @@ export default function DashboardPage() {
         <Group justify="space-between" align="flex-start">
           <div style={{ flex: 1 }}>
             <Title order={3} c="white" mb="md">
-              Learning Analytics Overview
+              Ikhtisar Analitik Pembelajaran
             </Title>
             <SimpleGrid cols={{ base: 2, sm: 4 }} spacing="lg">
               <div>
                 <Text size="sm" style={{ opacity: 0.9 }}>
-                  Avg Productivity
+                  Rata-rata Produktivitas
                 </Text>
                 <Text size="xl" fw={700}>
                   {stats.avgProductivityScore.toFixed(1)}%
@@ -348,7 +348,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <Text size="sm" style={{ opacity: 0.9 }}>
-                  High Engagement
+                  Keterlibatan Tinggi
                 </Text>
                 <Text size="xl" fw={700}>
                   {stats.highEngagementUsers}
@@ -356,7 +356,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <Text size="sm" style={{ opacity: 0.9 }}>
-                  Drafts per Student
+                  Draft per Siswa
                 </Text>
                 <Text size="xl" fw={700}>
                   {stats.totalStudents > 0 ? (stats.totalDrafts / stats.totalStudents).toFixed(1) : "0"}
@@ -364,7 +364,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <Text size="sm" style={{ opacity: 0.9 }}>
-                  Engagement Rate
+                  Tingkat Keterlibatan
                 </Text>
                 <Text size="xl" fw={700}>
                   {stats.totalStudents > 0 ? ((stats.highEngagementUsers / stats.totalStudents) * 100).toFixed(1) : "0"}
@@ -381,7 +381,7 @@ export default function DashboardPage() {
               <Center>
                 <div style={{ textAlign: "center" }}>
                   <div style={{ fontSize: "14px", fontWeight: 700 }}>{stats.avgProductivityScore.toFixed(0)}%</div>
-                  <div style={{ fontSize: "12px", opacity: 0.8 }}>Productivity</div>
+                  <div style={{ fontSize: "12px", opacity: 0.8 }}>Produktivitas</div>
                 </div>
               </Center>
             }
