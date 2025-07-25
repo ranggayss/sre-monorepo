@@ -22,7 +22,9 @@ export function CollaborationSection() {
     <Box
       id="collaboration"
       py={80}
-      bg={colorScheme === "dark" ? "var(--mantine-color-dark-8)" : "var(--mantine-color-gray-1)"}
+      style={{
+        backgroundColor: 'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'
+      }}
     >
       <Container size="xl">
         <Stack align="center" gap="xl" mb={60}>
