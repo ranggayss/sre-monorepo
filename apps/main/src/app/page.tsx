@@ -9,6 +9,7 @@ import { PricingSection } from "@/components/landing/PricingSection"
 import { FAQSection } from "@/components/landing/FAQSection"
 import { CTASection } from "@/components/landing/CTASection"
 import { Footer } from "@/components/landing/Footer"
+import { CollaborationSection } from "@/components/landing/CollaborationSection"
 
 export default function HomePage() {
   return (
@@ -28,6 +29,7 @@ export default function HomePage() {
         <PricingSection />
         <FAQSection />
         <CTASection />
+        <CollaborationSection />
       </AppShell.Main>
 
       {/* Footer is typically outside AppShell.Main but within the overall layout */}
