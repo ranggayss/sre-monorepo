@@ -98,14 +98,14 @@ export default function LoginPage() {
           boxShadow: "0 0 20px rgba(0,0,0,0.2)",
           borderRadius: 16,
           overflow: "hidden",
-          backgroundColor: "white",
+          backgroundColor: "light-dark(white, var(--mantine-color-dark-6))",
         }}
       >
         {/* Panel Kiri - Form Login */}
         <Box
           style={{
             width: "55%",
-            backgroundColor: "white",
+            backgroundColor: "light-dark(white, var(--mantine-color-dark-6))",
             padding: "48px",
             display: "flex",
             flexDirection: "column",
@@ -113,7 +113,7 @@ export default function LoginPage() {
           }}
         >
           <Box style={{ textAlign: "center", marginBottom: 24 }}>
-            <Title order={1} fw={800} c="dark" mb={4}>
+            <Title order={1} fw={800} mb={4} style={{ color: "light-dark(var(--mantine-color-dark-9), var(--mantine-color-gray-0))" }}>
               MASUK
             </Title>
             <Text c="dimmed" size="sm">
@@ -142,6 +142,16 @@ export default function LoginPage() {
                 required
                 type="email"
                 disabled={loading}
+                styles={{
+                  input: {
+                    backgroundColor: "light-dark(white, var(--mantine-color-dark-7))",
+                    borderColor: "light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-4))",
+                    color: "light-dark(var(--mantine-color-dark-9), var(--mantine-color-gray-0))",
+                    '&::placeholder': {
+                      color: "light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2))",
+                    }
+                  }
+                }}
               />
 
               <Text fw={600}>Kata Sandi</Text>
@@ -156,6 +166,16 @@ export default function LoginPage() {
                 }
                 required
                 disabled={loading}
+                styles={{
+                  input: {
+                    backgroundColor: "light-dark(white, var(--mantine-color-dark-7))",
+                    borderColor: "light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-4))",
+                    color: "light-dark(var(--mantine-color-dark-9), var(--mantine-color-gray-0))",
+                    '&::placeholder': {
+                      color: "light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2))",
+                    }
+                  }
+                }}
               />
 
               <Group justify="space-between" mt="xs">
