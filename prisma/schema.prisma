@@ -112,6 +112,7 @@ model User {
   createdAssignments   Assignment[]          @relation("AssignmentCreator")
   submissions          AssignmentSubmission[]
   analytics            Analytics[]
+  xapiStatements       XapiStatement[]
 }
 
 model Draft {
@@ -234,6 +235,7 @@ model Assignment {
   created_by      String
   createdAt       DateTime              @default(now())
   updatedAt       DateTime              @updatedAt
+  target_classes  String?
 
   creator         User                  @relation("AssignmentCreator", fields: [created_by], references: [id], onDelete: Cascade)
   submissions     AssignmentSubmission[]
@@ -276,4 +278,22 @@ enum SubmissionStatus {
   pending
   submitted
   graded
+}
+
+model XapiStatement {
+  id        String   @id @default(uuid())
+  actor     Json     
+  verb      Json     
+  object    Json     
+  result    Json?    
+  context   Json?    
+  timestamp DateTime @default(now())
+  userId    String?  
+  user      User?    @relation(fields: [userId], references: [id])
+  sessionId String?
+  sequence  Int?
+
+  @@index([userId])
+  @@index([timestamp])
+  @@index([sessionId])
 }
