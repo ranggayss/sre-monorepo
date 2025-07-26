@@ -1,55 +1,32 @@
 "use client"
 
-import { Container, Title, Text, SimpleGrid, Card, Group, Avatar, Stack, Badge, Box, Rating } from "@mantine/core"
+import { Container, Title, Text, SimpleGrid, Card, Group, Avatar, Stack, Badge, Box, Rating } from "@mantine/core";
+import { IconUser } from '@tabler/icons-react'
 
 const testimonials = [
   {
-    name: "Dr. Sarah Chen",
-    role: "Research Professor, MIT",
-    avatar: "/placeholder.svg?height=50&width=50",
+    name: "Rio Nurtantyana S.Pd., M.Pd., M.Sc., Ph.D.",
+    role: "Peneliti, BRIN",
+    avatar: <IconUser size={16}/>,
     rating: 5,
     content:
-      "My-SRE has revolutionized how I approach literature reviews. The knowledge graph visualization helps me discover connections I never would have found manually.",
+      "Platform ini sangat membantu dan mudah digunakan bagi para peneliti dan mahasiswa dalam mencari ide riset dan menulis artikel ilmiah bersama dengan AI",
   },
   {
-    name: "Michael Rodriguez",
-    role: "PhD Student, Stanford",
-    avatar: "/placeholder.svg?height=50&width=50",
+    name: "M. Luthfi Zahran",
+    role: "Mahasiswa, Universitas Brawijaya",
+    avatar: <IconUser size={16}/>,
     rating: 5,
     content:
-      "The AI writing assistant is incredible. It helps me structure my thoughts and ensures my citations are always properly formatted. A game-changer for academic writing.",
+      "Asisten penulisan AI-nya luar biasa membantu. Sangat mudah untuk menyusun kerangka penelitian dan memastikan format sitasi selalu benar. Benar-benar mengubah cara saya menulis karya ilmiah.",
   },
   {
-    name: "Prof. Emily Watson",
-    role: "Department Head, Oxford",
-    avatar: "/placeholder.svg?height=50&width=50",
+    name: "Rangga Yovie Saputra",
+    role: "Mahasiswa, Oxford",
+    avatar: <IconUser size={16}/>,
     rating: 5,
     content:
-      "I've been using My-SRE for my team's collaborative research projects. The ability to share knowledge graphs and co-write drafts has improved our productivity immensely.",
-  },
-  {
-    name: "David Kim",
-    role: "Research Analyst, Google",
-    avatar: "/placeholder.svg?height=50&width=50",
-    rating: 5,
-    content:
-      "The Brain feature is phenomenal. Being able to chat with my research collection and get instant insights has saved me countless hours of manual searching.",
-  },
-  {
-    name: "Dr. Lisa Patel",
-    role: "Medical Researcher, Johns Hopkins",
-    avatar: "/placeholder.svg?height=50&width=50",
-    rating: 5,
-    content:
-      "As someone who works with hundreds of research papers, the automatic citation management and reference list generation features are absolutely essential.",
-  },
-  {
-    name: "James Wilson",
-    role: "Graduate Student, Harvard",
-    avatar: "/placeholder.svg?height=50&width=50",
-    rating: 5,
-    content:
-      "The learning curve was minimal, but the impact on my research workflow has been massive. I can't imagine going back to traditional research methods.",
+      "Saya sudah menggunakan My-SRE untuk proyek penelitian kolaboratif tim. Kemampuan berbagi peta pengetahuan dan menulis draft bersama-sama benar-benar meningkatkan produktivitas kami secara signifikan.",
   },
 ]
 
@@ -59,13 +36,13 @@ export function TestimonialsSection() {
       <Container size="xl">
         <Stack align="center" gap="xl" mb={60}>
           <Badge size="lg" variant="light" color="blue" radius="xl">
-            Testimonials
+            Testimoni
           </Badge>
           <Title order={2} size="2.5rem" fw={700} ta="center">
-            Trusted by Researchers Worldwide
+            Dipercaya oleh Peneliti & Mahasiswa
           </Title>
           <Text size="lg" c="dimmed" ta="center" maw={600}>
-            Join thousands of researchers, academics, and students who have transformed their research workflow with
+            Bergabunglah dengan ribuan peneliti, akademisi, dan mahasiswa yang telah mentransformasi alur kerja penelitian mereka dengan
             My-SRE.
           </Text>
         </Stack>
@@ -79,7 +56,7 @@ export function TestimonialsSection() {
                   "{testimonial.content}"
                 </Text>
                 <Group gap="md">
-                  <Avatar src={testimonial.avatar} size="md" />
+                  {testimonial.avatar}
                   <Stack gap={0}>
                     <Text fw={600} size="sm">
                       {testimonial.name}

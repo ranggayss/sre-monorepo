@@ -22,9 +22,9 @@ export function CollaborationSection() {
     <Box
       id="collaboration"
       py={80}
-      style={{
-        backgroundColor: 'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'
-      }}
+      // style={{
+      //   backgroundColor: 'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'
+      // }}
     >
       <Container size="xl">
         <Stack align="center" gap="xl" mb={60}>
@@ -42,7 +42,7 @@ export function CollaborationSection() {
               radius="md"
               withBorder
               h="100%"
-              bg={colorScheme === "dark" ? "var(--mantine-color-dark-6)" : "white"}
+              bg={colorScheme === "dark" ? "white" : "white"}
             >
               <Stack align="center" gap="lg">
                 <Title order={3} size="xl" fw={600} ta="center" c="dimmed">
@@ -76,7 +76,7 @@ export function CollaborationSection() {
               radius="md"
               withBorder
               h="100%"
-              bg={colorScheme === "dark" ? "var(--mantine-color-dark-6)" : "white"}
+              bg={colorScheme === "dark" ? "white" : "white"}
             >
               <Stack align="center" gap="lg">
                 <Title order={3} size="xl" fw={600} ta="center" c="dimmed">
@@ -103,7 +103,7 @@ export function CollaborationSection() {
               radius="md"
               withBorder
               h="100%"
-              bg={colorScheme === "dark" ? "var(--mantine-color-dark-6)" : "white"}
+              bg={colorScheme === "dark" ? "white" : "white"}
             >
               <Stack align="center" gap="lg">
                 <Title order={3} size="xl" fw={600} ta="center" c="dimmed">
