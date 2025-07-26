@@ -1,15 +1,16 @@
 'use client';
 
 import { Modal, Table, Text, Group, Badge, Paper, ThemeIcon, Box, Stack } from '@mantine/core';
-// import { ExtendedNode } from '../types';
 import { ExtendedNode } from '@/types';
 import { IconArticle, IconTarget, IconMath, IconHistory, IconArrowForward, IconFileAlert } from '@tabler/icons-react';
 import WebViewer from '@/components/WebViewer';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 interface NodeDetailProps {
   node: ExtendedNode | null;
   onClose: () => void;
+  trackPdfView?: (pdfName: string, action: 'open' | 'close') => void;
+  trackModalInteraction?: (modalType: string, action: 'open' | 'close') => void;
 };
 
 const attributeIcons = {
@@ -44,13 +45,56 @@ export const handleAnalytics = async (analyticsData: any) => {
   }
 };
 
-export default function NodeDetail({ node, onClose }: NodeDetailProps) {
+export default function NodeDetail({ node, onClose, trackPdfView, trackModalInteraction }: NodeDetailProps) {
   const [opened, setOpened] = useState(false);
   const [selectedPDF, setSelectedPDF] = useState<string | null>(null);
-  if (!node) return null;
 
+  const handlePdfOpen = useCallback((pdfUrl: string, pdfName?: string) => {
+    const fileName = pdfName || pdfUrl.split('/').pop() || 'unknown.pdf';
+    
+    console.log("📖 Opening PDF:", { fileName, pdfUrl });
+    
+    // Update UI state
+    setSelectedPDF(pdfUrl);
+    setOpened(true);
+    
+    // Track PDF view open
+    if (trackPdfView) {
+      try {
+        trackPdfView(fileName, 'open');
+        console.log("✅ PDF view open tracked");
+      } catch (error) {
+        console.error("❌ PDF view open tracking error:", error);
+      }
+    }
+  }, [trackPdfView]); // 
+
+  const handlePdfClose = useCallback(() => {
+    const fileName = selectedPDF?.split('/').pop() || 'unknown.pdf';
+    
+    console.log("📖 Closing PDF:", { fileName });
+    
+    // Track PDF view close SEBELUM update state
+    if (trackPdfView && selectedPDF) {
+      try {
+        trackPdfView(fileName, 'close');
+        console.log("✅ PDF view close tracked");
+      } catch (error) {
+        console.error("❌ PDF view close tracking error:", error);
+      }
+    }
+    
+    // Update UI state
+    setOpened(false);
+    setSelectedPDF(null);
+  }, [selectedPDF, trackPdfView]); 
+
+  if (!node) {
+    return null;
+  }
+  
   return (
-   <Stack gap="lg">
+    <Stack gap="lg">
       {/* Title Section */}
       <Paper p="md" radius="md" withBorder>
         <Group justify="space-between" mb="xs">
@@ -169,10 +213,7 @@ export default function NodeDetail({ node, onClose }: NodeDetailProps) {
                 color="blue"
                 size="lg"
                 style={{ cursor: 'pointer' }}
-                onClick={() => {
-                  setSelectedPDF(node.att_url ?? null);
-                  setOpened(true);
-                }}
+                onClick={() => handlePdfOpen(node.att_url!, node.title || node.label)}
               >
                 Buka PDF
               </Badge>
@@ -180,38 +221,37 @@ export default function NodeDetail({ node, onClose }: NodeDetailProps) {
           </Paper>
         )}
 
+        {/* ✅ FIX: Modal harus selalu di-render, tapi dengan opened state */}
         <Modal
-            opened={opened}
-            onClose={() => {
-                setOpened(false);
-                setSelectedPDF(null);
-            }}
-            title="Lihat Artikel"
-            size="90%"
-            padding="sm"
-            centered
-            overlayProps={{ blur: 3 }}
-            styles={{
-                content: {
-                height: '90vh',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: 0,
-                position: 'relative',
-                },
-                body: {
-                flex: 1,
-                overflow: 'hidden',
-                padding: 0,
-                position: 'relative',
-                },
-            }}
-            >
-            {selectedPDF && (
-                <div style={{ height: '100%', position: 'relative' }}>
-                <WebViewer fileUrl={selectedPDF} onAnalytics={handleAnalytics} />
-                </div>
-            )}
+          opened={opened}
+          onClose={handlePdfClose}
+          title="Lihat Artikel"
+          size="90%"
+          padding="sm"
+          centered
+          overlayProps={{ blur: 3 }}
+          styles={{
+            content: {
+              height: '90vh',
+              display: 'flex',
+              flexDirection: 'column',
+              padding: 0,
+              position: 'relative',
+            },
+            body: {
+              flex: 1,
+              overflow: 'hidden',
+              padding: 0,
+              position: 'relative',
+            },
+          }}
+        >
+          {/* ✅ FIX: Kondisional render di dalam Modal, bukan Modal itu sendiri */}
+          {selectedPDF && (
+            <div style={{ height: '100%', position: 'relative' }}>
+              <WebViewer fileUrl={selectedPDF} onAnalytics={handleAnalytics} />
+            </div>
+          )}
         </Modal>
       </Stack>
     </Stack>
