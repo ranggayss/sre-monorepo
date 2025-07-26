@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { createServerSupabaseClient } from '@sre-monorepo/lib';
+import { sendXapiFromMiddleware } from '@sre-monorepo/lib';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -41,6 +42,33 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(redirectUrl);
     }
 
+    //generate sessionid
+    const sessionId = `${session.user.id}_${Math.floor(session.expires_at! / 1000)}`;
+
+    // Track page visits di brain/IDE app (AUTOMATIC)
+    await sendXapiFromMiddleware({
+      verb: {
+        id: "http://adlnet.gov/expapi/verbs/experienced",
+        display: { "en-US": "viewed" }
+      },
+      object: {
+        id: `brain${pathname}`,
+        definition: {
+          name: { "en-US": `Brain App - ${pathname}` },
+          type: "http://adlnet.gov/expapi/activities/lesson"
+        }
+      },
+      context: {
+        extensions: {
+          sessionId: sessionId,
+          flowStep: "brain",
+          currentPath: pathname,
+          activityType: "project-brain",
+          supabaseUserId: session.user.id
+        }
+      }
+    }, session, "brain", request);
+
     // Jika user sudah authenticated dan di root, biarkan lewat (tidak perlu redirect lagi)
     // Karena sekarang root adalah halaman utama brain app
 
@@ -49,6 +77,8 @@ export async function middleware(request: NextRequest) {
     response.headers.set('X-Authenticated', session ? 'true' : 'false');
     response.headers.set('X-User-Email', session?.user?.email || '');
     response.headers.set('X-Middleware', 'brain-passed');
+    response.headers.set('X-Session-Id', sessionId);
+    response.headers.set('X-Page-Enter-Time', Date.now().toString());
 
     return response;
   } catch (error) {
