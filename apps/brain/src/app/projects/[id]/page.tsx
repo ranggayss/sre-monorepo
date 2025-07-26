@@ -84,6 +84,8 @@ import AnnotationPanel from '@/components/AnnotationPanel';
 import ArticleDetailTable from '@/components/ArticleDetailTable';
 import { Cite } from '@citation-js/core';
 import '@citation-js/plugin-ris';
+import { createClient } from '@sre-monorepo/lib';
+import { useXapiTracking } from '@/hooks/useXapiTracking';
 
 // const Neograph = dynamic(() => import('@/components/NeoGraph'), {
 //     ssr: false,
@@ -212,6 +214,45 @@ export default function Home() {
   const [risFile, setRisFile] = useState<File | null>(null);
   const [isProcessingRis, setIsProcessingRis] = useState(false);
   const risFileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const [session, setSession] = useState<any>(null);
+  const supabase = createClient();
+
+  const {
+    trackNodeClick,
+    trackEdgeClick,
+    trackPdfUpload,
+    trackPdfView,
+    trackChatInteraction,
+    trackModalInteraction,
+    trackTabChange,
+    trackViewModeChange,
+    trackGraphModeChange
+  } = useXapiTracking(session);
+
+  // ✅ Session setup
+  useEffect(() => {
+    const getSessionFromAPI = async () => {
+      try {
+        const response = await fetch('/api/session');
+        const data = await response.json();
+        
+        if (data.user) {
+          console.log("✅ Got session from API:", data.user.email);
+          setSession({
+            user: data.user,
+            expires_at: data.expires_at
+          });
+        } else {
+          console.log("❌ No session from API");
+        }
+      } catch (error) {
+        console.error("API session fetch error:", error);
+      }
+    };
+    
+    getSessionFromAPI();
+  }, []);
 
   const parseRisFile = async (risContent: string) => {
   try {
@@ -361,6 +402,8 @@ export default function Home() {
         const text = await res.text();
         throw new Error(`Upload failed: ${text}`);
       };
+
+      trackPdfUpload(selectedFile.name, 'direct');
 
       notifications.show({
         title: 'Berhasil',
@@ -909,89 +952,33 @@ export default function Home() {
   }, [activeArticles, activeRelations, selectedNode, selectedEdge, sessionId, isLoadingSession, isLoadingData]);
 
   const handleNodeClick = useCallback((node: ExtendedNode) => {
+    console.log("🎯 Node clicked:", { 
+      id: node.id, 
+      label: node.label,
+      hasSession: !!session 
+    });
     setSelectedEdge(null);
     setSelectedNode({...node});
     setDetailModalNode(node);
-  }, []);
+    if (session) {
+      console.log("📤 Tracking node click...");
+      trackNodeClick(node);
+    } else {
+      console.warn("⚠️ No session for node tracking");
+    }
+  }, [trackNodeClick, session]);
 
   const handleEdgeClick = useCallback((edge: ExtendedEdge) => {
     setSelectedNode(null);
     setSelectedEdge(edge);
     setDetailModalEdge(edge);
-  }, []);
+    trackEdgeClick(edge);
+  }, [trackEdgeClick]);
 
   const handleUploadFile = () => {
     // fileInputRef.current?.click();
     setUploadModalOpened(true);
   };
-  
-  //THE USUALLLLLL
-  /*
-  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (!file.name.endsWith('.pdf')){
-      notifications.show({
-        title: 'Format tidak didukung',
-        message: 'Mohon upload file PDF',
-        color: 'yellow',
-        position: 'top-right',
-      });
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('title', file.name);
-    formData.append('sessionId', sessionId as string);
-
-    setUpLoading(true);
-    try {
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const contentType = res.headers.get("content-type");
-      if (!res.ok){
-        const text = await res.text();
-        throw new Error(`Upload failed: ${text}`);
-      };
-
-      let data: any = {};
-      if (contentType?.includes("application/json")){
-        data = await res.json();
-        console.log('File uploaded:', data);
-      }else{
-        const text = await res.text();
-        console.log('Unexpected response:', text);
-      }
-
-      notifications.show({
-        title: 'Berhasil',
-        message: `File "${file.name}" berhasil diunggah dan diproses`,
-        color: 'green',
-        position: 'top-right',
-      });
-
-      //PERBAIKAN: Refresh data setelah upload
-      await fetchData();
-
-    } catch (error: any) {
-      notifications.show({
-        title: 'Upload Gagal',
-        message: error.message || 'Terjadi Kesalahan saat upload',
-        color: 'red',
-        position: 'top-right',
-      });
-      console.error('File upload error:', error);
-    } finally{
-      setUpLoading(false);
-      e.target.value = ''
-    }
-  };
-  */
 
   const onFileChangeInModal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -1059,6 +1046,8 @@ export default function Home() {
         console.log('Unexpected response:', text);
       }
 
+      trackPdfUpload(selectedFile.name, 'form');
+
       notifications.show({
         title: 'Berhasil',
         message: `File "${selectedFile.name}" berhasil diunggah dan diproses`,
@@ -1094,20 +1083,6 @@ export default function Home() {
       setUpLoading(false);
     }
   };
-
-  // const handleModalClose = () => {
-  //   setUploadModalOpened(false);
-  //   setSelectedFile(null);
-  //   setUploadForm({
-  //     title: '',
-  //     author: '',
-  //     year: '',
-  //     abstract: '',
-  //     keywords: '',
-  //     doi: '',
-  //     category: ''
-  //   });
-  // };  
 
   //PERBAIKAN: Loading state yang lebih informatif
   if (!mounted || isLoadingSession || isLoadingData) {
@@ -1578,7 +1553,10 @@ export default function Home() {
         radius="lg"
         shadow="xl"
       >
-        <NodeDetail node={detailModalNode} onClose={() => {
+        <NodeDetail node={detailModalNode} 
+        trackPdfView={trackPdfView}
+        trackModalInteraction={trackModalInteraction}
+        onClose={() => {
           setDetailModalNode(null);
           if (edgeDetailReturn){
             setDetailModalEdge(edgeDetailReturn);
@@ -1664,114 +1642,6 @@ export default function Home() {
           </div>
         </div>
       )}
-      {/* Upload Modal */}
-      {/* <Modal
-        opened={uploadModalOpened}
-        onClose={handleModalClose}
-        title="Upload Artikel PDF"
-        size="lg"
-        centered
-      >
-        <Stack gap="md">
-          <div>
-            <input
-              type="file"
-              style={{ display: 'none'}}
-              ref={fileInputRef}
-              onChange={onFileChangeInModal}
-              accept="application/pdf"
-            />
-            <Button
-              variant="light"
-              color="blue"
-              leftSection={<IconUpload size={16} />}
-              onClick={() => fileInputRef.current?.click()}
-              fullWidth
-            >
-              {selectedFile ? `File: ${selectedFile.name}` : 'Pilih File PDF'}
-            </Button>
-          </div>
-          <TextInput
-            label="Judul Artikel"
-            placeholder="Masukkan judul artikel"
-            value={uploadForm.title}
-            onChange={(e) => setUploadForm({...uploadForm, title: e.target.value})}
-            required
-          />
-          
-          <TextInput
-            label="Penulis"
-            placeholder="Masukkan nama penulis"
-            value={uploadForm.author}
-            onChange={(e) => setUploadForm({...uploadForm, author: e.target.value})}
-            required
-          />
-          
-          <TextInput
-            label="Tahun"
-            placeholder="Masukkan tahun publikasi"
-            value={uploadForm.year}
-            onChange={(e) => setUploadForm({...uploadForm, year: e.target.value})}
-            required
-          />
-          
-          <Textarea
-            label="Abstrak"
-            placeholder="Masukkan abstrak artikel"
-            value={uploadForm.abstract}
-            onChange={(e) => setUploadForm({...uploadForm, abstract: e.target.value})}
-            minRows={4}
-            required
-          />
-          
-          <TextInput
-            label="Kata Kunci"
-            placeholder="Masukkan kata kunci (pisahkan dengan koma)"
-            value={uploadForm.keywords}
-            onChange={(e) => setUploadForm({...uploadForm, keywords: e.target.value})}
-          />
-          
-          <TextInput
-            label="DOI"
-            placeholder="Masukkan DOI artikel"
-            value={uploadForm.doi}
-            onChange={(e) => setUploadForm({...uploadForm, doi: e.target.value})}
-          />
-          
-          <Select
-            label="Kategori"
-            placeholder="Pilih kategori artikel"
-            value={uploadForm.category}
-            onChange={(value) => setUploadForm({...uploadForm, category: value || ''})}
-            data={[
-              { value: 'research', label: 'Penelitian' },
-              { value: 'review', label: 'Review' },
-              { value: 'case-study', label: 'Studi Kasus' },
-              { value: 'theory', label: 'Teori' },
-              { value: 'methodology', label: 'Metodologi' }
-            ]}
-          />
-          
-          {selectedFile && (
-            <Text size="sm" c="dimmed">
-              File: {selectedFile.name}
-            </Text>
-          )}
-          
-          <Group justify="flex-end" mt="md">
-            <Button variant="light" onClick={handleModalClose}>
-              Batal
-            </Button>
-            <Button 
-              onClick={handleUploadSubmit} 
-              loading={uploading}
-              disabled={!selectedFile}
-            >
-              Upload
-            </Button>
-            </Group>
-        </Stack>
-      </Modal> */}
 
       {/* // Enhanced Upload Modal JSX */}
       <Modal
