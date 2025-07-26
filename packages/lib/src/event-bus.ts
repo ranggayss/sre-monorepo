@@ -1,5 +1,5 @@
 // lib/event-bus.ts
-import mitt from 'mitt';
+import mitt, { Emitter } from 'mitt';
 
 type Events = {
   sessionCreated: void;
@@ -8,6 +8,7 @@ type Events = {
   articleDeleted: void;
 };
 
- const eventBus = mitt<Events>();
+//  const eventBus = mitt<Events>();
+const eventBus: Emitter<Events> = mitt<Events>();
 
 export default eventBus;
