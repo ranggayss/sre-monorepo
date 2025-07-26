@@ -59,8 +59,8 @@ export default function LoginPage() {
         console.log('Redirecting to:', profileUrl);
         
         // Force full page navigation untuk cross-domain
-        // window.location.href = profileUrl;
-        window.open(profileUrl, '_blank');
+        window.location.href = profileUrl;
+        // window.open(profileUrl, '_blank');
         
         // Alternative untuk same domain:
         // router.push(brainUrl);
