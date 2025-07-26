@@ -27,20 +27,33 @@ export async function GET(request: NextRequest) {
     console.log("User metadata:", user?.user_metadata)
 
     // 3. Cek database
-    let dbUser = null
-    if (user?.id) {
-      dbUser = await prisma.user.findUnique({
+    // let dbUser = null
+    // if (user?.id) {
+    //   dbUser = await prisma.user.findUnique({
+    //     where: { id: user.id },
+    //     select: {
+    //       id: true,
+    //       email: true,
+    //       name: true,
+    //       group: true,
+    //       nim: true,
+    //     },
+    //   })
+    //   console.log("Database user:", dbUser)
+    // }
+    const dbUser =
+  user?.id != null
+    ? await prisma.user.findUnique({
         where: { id: user.id },
         select: {
           id: true,
-          email: true,
           name: true,
+          email: true,
           group: true,
           nim: true,
         },
       })
-      console.log("Database user:", dbUser)
-    }
+    : null;
 
     return NextResponse.json({
       session: !!session,
