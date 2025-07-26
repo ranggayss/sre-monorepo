@@ -1504,7 +1504,7 @@ export default function Home() {
                           animation: 'pulse 2s infinite'
                         }}
                       >
-                        {selectedNode ? 'Node Terpilih' : 'Edge Terpilih'}
+                        {/* {selectedNode ? 'Node Terpilih' : 'Edge Terpilih'} */}
                       </Badge>
                     )}
                   </Group>
