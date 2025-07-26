@@ -6,6 +6,7 @@ import { createServerSupabaseClient, sharedSignIn, sharedSignUp, sharedSignOut }
 import { prisma } from '@sre-monorepo/lib';
 import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
+import { sendXapiStatementServer } from '@sre-monorepo/lib';
 
 interface AuthResult {
   error?: string;
@@ -26,6 +27,44 @@ export async function signIn(formData: { email: string; password: string }): Pro
       console.log('Session after sign in:', !!session);
       
       if (session) {
+        // 🚀 ADD: Track login event dengan xAPI
+        const sessionId = `${session.user.id}_${Math.floor(session.expires_at! / 1000)}`;
+        
+        try {
+          await sendXapiStatementServer({
+            verb: {
+              id: "http://adlnet.gov/expapi/verbs/logged-in",
+              display: { "en-US": "logged in" }
+            },
+            object: {
+              id: "main/signin",
+              definition: {
+                name: { "en-US": "Sign In to Main App" },
+                type: "http://adlnet.gov/expapi/activities/interaction"
+              }
+            },
+            result: {
+              completion: true,
+              success: true
+            },
+            context: {
+              extensions: {
+                sessionId: sessionId,
+                flowStep: "session-start",
+                loginSource: "main",
+                authMethod: "email-password",
+                userEmail: session.user.email,
+                loginTimestamp: new Date().toISOString()
+              }
+            }
+          }, session, "main");
+          
+          console.log('xAPI login tracking sent successfully');
+        } catch (xapiError) {
+          console.error('Failed to send xAPI login tracking:', xapiError);
+          // Don't fail the login if xAPI fails
+        }
+        
         // Set additional cookie untuk debugging
         const cookieStore = await cookies();
         cookieStore.set('auth-debug', 'authenticated', {
@@ -121,6 +160,74 @@ export async function signUp(formData: {
       const { data: { session } } = await supabase.auth.getSession();
       
       if (session) {
+        // 🚀 ADD: Track registration + login event dengan xAPI
+        const sessionId = `${session.user.id}_${Math.floor(session.expires_at! / 1000)}`;
+        
+        try {
+          // Track sign up event
+          await sendXapiStatementServer({
+            verb: {
+              id: "http://adlnet.gov/expapi/verbs/registered",
+              display: { "en-US": "registered" }
+            },
+            object: {
+              id: "main/signup",
+              definition: {
+                name: { "en-US": "Sign Up to Main App" },
+                type: "http://adlnet.gov/expapi/activities/interaction"
+              }
+            },
+            result: {
+              completion: true,
+              success: true
+            },
+            context: {
+              extensions: {
+                sessionId: sessionId,
+                flowStep: "registration",
+                registrationSource: "main",
+                userGroup: formData.group,
+                userNim: formData.sid,
+                userEmail: session.user.email,
+                registrationTimestamp: new Date().toISOString()
+              }
+            }
+          }, session, "main");
+
+          // Track automatic login after signup
+          await sendXapiStatementServer({
+            verb: {
+              id: "http://adlnet.gov/expapi/verbs/logged-in",
+              display: { "en-US": "logged in" }
+            },
+            object: {
+              id: "main/auto-signin-after-signup",
+              definition: {
+                name: { "en-US": "Auto Sign In After Registration" },
+                type: "http://adlnet.gov/expapi/activities/interaction"
+              }
+            },
+            result: {
+              completion: true,
+              success: true
+            },
+            context: {
+              extensions: {
+                sessionId: sessionId,
+                flowStep: "session-start",
+                loginSource: "main",
+                authMethod: "auto-after-signup",
+                userEmail: session.user.email,
+                autoLoginTimestamp: new Date().toISOString()
+              }
+            }
+          }, session, "main");
+          
+          console.log('xAPI signup and login tracking sent successfully');
+        } catch (xapiError) {
+          console.error('Failed to send xAPI signup tracking:', xapiError);
+          // Don't fail the signup if xAPI fails
+        }
         // Set debug cookie
         const cookieStore = await cookies();
         cookieStore.set('auth-debug', 'authenticated', {
